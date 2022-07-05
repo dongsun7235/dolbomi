@@ -37,9 +37,9 @@ public interface AccReservationMapper {
 
 
     //동행서비스고객이 매니저 배정수락,user_userdetails 페이지의 동행예약목록
-    public void AccManagerY(String userEmail);
+    public void AccManagerY(Long accReservationNum);
     // 동행서비스 매니저 배정 거절 user_userdetails페이지
-    public void AccManagerN(String userEmail);
+    public void AccManagerN(Long accReservationNum);
     // 고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
     public int Accdelete(Long accReservationNum);
     //동행서비스 매니저의 업무 시작,manager 페이지의 동행예약목록
@@ -50,8 +50,9 @@ public interface AccReservationMapper {
     public int AccManagerCancel(Long accReservationNum);
     // 동행서비스 예약자 1명 정보, status=0
     public AccReservationVO accgetNum1(String userEmail);
-    public AccReservationVO accgetNum2(String userEmail);
-    public AccReservationVO accgetNum3(String userEmail);
+    public User4AccDTO accManagerJoin(String userEmail);
+    public User4AccDTO accgetNum2(String userEmail);
+    public User4AccDTO accgetNum3(String userEmail);
     public AccReservationVO accgetNum4(String userEmail);
     //user_userdetails의 카운트 횟수.  ACC_RESERVATION_STATUS 에 따라 변경
 

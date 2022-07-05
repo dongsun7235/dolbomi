@@ -31,9 +31,9 @@ public interface CareReservationMapper {
     public CareReservationVO CareGet(Long careReservationNum);
 
     //돌봄서비스고객이 매니저 배정수락,user_userdetails 페이지의 돌봄예약목록
-    public void CareManagerY(String userEmail);
+    public void CareManagerY(Long careReservationNum);
     // 돌봄서비스 매니저 배정 거절 user_userdetails페이지
-    public void CareManagerN(String userEmail);
+    public void CareManagerN(Long careReservationNum);
     // 고객이 예약취소,user_userdetails2 페이지의 돌봄예약 취소
     public int Caredelete(Long careReservationNum);
     //돌봄서비스 매니저의 업무 시작,manager 페이지의 돌봄예약목록
@@ -44,8 +44,9 @@ public interface CareReservationMapper {
     public int CareManagerCancel(Long careReservationNum);
     // 돌봄서비스 예약자 1명 정보 status별
     public CareReservationVO caregetNum1(String userEmail);
-    public CareReservationVO caregetNum2(String userEmail);
-    public CareReservationVO caregetNum3(String userEmail);
+    public User4CareDTO careManagerJoin(String userEmail);
+    public User4CareDTO caregetNum2(String userEmail);
+    public User4CareDTO caregetNum3(String userEmail);
     public CareReservationVO caregetNum4(String userEmail);
     //user_userdetails의 카운트 횟수.  CARE_RESERVATION_STATUS 에 따라 변경
 

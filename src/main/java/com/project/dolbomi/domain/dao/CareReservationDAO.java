@@ -42,12 +42,12 @@ public class CareReservationDAO {
     }
 
     // 돌봄서비스 매니저 배정 수락 user_userdetails페이지
-    public void CareManagerY(String userEmail){
-        careReservationMapper.CareManagerY(userEmail) ;
+    public void CareManagerY(Long accReservationNum){
+        careReservationMapper.CareManagerY(accReservationNum) ;
     }
     // 돌봄서비스 매니저 배정 거절 user_userdetails페이지
-    public void CareManagerN(String userEmail){
-        careReservationMapper.CareManagerN(userEmail);
+    public void CareManagerN(Long accReservationNum){
+        careReservationMapper.CareManagerN(accReservationNum);
     }
 
     // 돌봄서비스고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
@@ -74,8 +74,9 @@ public class CareReservationDAO {
     }
 
     public CareReservationVO caregetNum1(String userEmail){ return careReservationMapper.caregetNum1(userEmail);}
-    public CareReservationVO caregetNum2(String userEmail){ return careReservationMapper.caregetNum2(userEmail);}
-    public CareReservationVO caregetNum3(String userEmail){ return careReservationMapper.caregetNum3(userEmail);}
+    public User4CareDTO careManagerJoin(String userEmail){return careReservationMapper.careManagerJoin(userEmail);}
+    public User4CareDTO caregetNum2(String userEmail){ return careReservationMapper.caregetNum2(userEmail);}
+    public User4CareDTO caregetNum3(String userEmail){ return careReservationMapper.caregetNum3(userEmail);}
     public CareReservationVO caregetNum4(String userEmail){ return careReservationMapper.caregetNum4(userEmail);}
 
     public int caregetTotal5(String userEmail){return careReservationMapper.caregetTotal5(userEmail); }

@@ -25,44 +25,32 @@
 <header th:replace="header.html"></header>
 <div class="sub_page_wrap">
     <!-- sub_title_wrap -->
-    <!--<div class="sub_title_wrap title_only">
+    <div class="sub_title_wrap title_only">
 
-        <div class="sub_title" th:object="${accreservationlist}">
+        <div class="sub_title">
             <p>서비스 이용 내역</p>
-            <p th:text="*{accReservationName}+'님의 서비스 이용 내역입니다.'"></p>
+            <p th:text="|${session.userVO.userName}님의 서비스 이용 내역입니다.|"></p>
         </div>
 
-    </div>-->
+    </div>
 
     <div class="common_content_wrap">
         <div class="form_sub_tab column" >
             <ul class="tab" >
                 <!-- <li id="all" >전체</li> -->
                 <li id="match" class="current" onclick="location.href='/user/user_userdetails'">
-                    <span>배정요청</span><em th:text="*{totallist1}+*{totallist5}" ></em></li>
+                    <span>배정요청</span><em th:text="${totallist1}+${totallist5}" ></em></li>
                 <li id="reserv" onclick="location.href='/user/user_userdetails2'"><span>예약</span><em th:text="*{totallist2}+*{totallist6}"></em></li>
                 <li id="proc" onclick="location.href='/user/user_userdetails3'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
                 <li id="end" onclick="location.href='/user/user_userdetails4'"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
             </ul>
         </div>
-        <div class="form_sub_tab column" >
-            <ul class="tab" >
-                <!-- <li id="all" >전체</li> -->
-                <li id="match" class="current" onclick="location.href='/user/user_userdetails'">
-                    <span>배정요청</span><em th:text="*{totallist1}+*{totallist5}" ></em></li>
-                <li id="reserv" onclick="location.href='/user/user_userdetails2'"><span>예약</span><em th:text="*{totallist2}+*{totallist6}"></em></li>
-                <li id="proc" onclick="location.href='/user/user_userdetails3'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
-                <li id="end" onclick="location.href='/user/user_userdetails4'"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
-            </ul>
-        </div>
-
-
 
         <div class="com_accordion assignment" >
             <ul>
                 <!-- 매니저 배정 전... -->
                 <li class="history">
-                    <div class="ac_title" th:if="${accreservationlist}" th:object="${totallist1}">
+                    <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
 
                         <p class="service_a">동행서비스</p>
                         <div class="left_con">
@@ -73,7 +61,7 @@
                             <p>
                                 <span class="title">이용일시</span>
                                 <span th:text="*{accReservationDate}"></span>
-                                <span th:text="*{accReservationTime}"></span>
+                                <span th:text="|*{accReservationTime}시간|"></span>
                             </p>
                             <p>
                                 <span class="title">출발지</span>
@@ -86,7 +74,7 @@
 
                             <p>
                                 <span class="title">총 이용요금</span>
-                                <span th:text="*{accReservationPrice}+'원'"></span>
+                                <span th:text="|*{accReservationPrice}원|"></span>
                             </p>
                         </div>
                         <div class="right_con">
@@ -98,7 +86,6 @@
 
                                         </span>
                                 <span class="msg">매니저 배정 요청중입니다.</span>
-                                <a class="tell" href="tel:"></a>
                             </p>
                         </div>
                     </div>
@@ -107,8 +94,9 @@
                 <!-- 매니저 배정 후 선택 -->
 
                 <li class="history assigned">
+                  <form action="/user/matchingAccept" method="post" name="matching">
                     <div class="ac_title" th:object="${accmanagerInfo}" th:if="${accmanagerInfo}" >
-
+                        <input type="hidden" th:field="*{accReservationNum}">
                         <p class="service_a">동행서비스</p>
                         <div class="left_con">
                             <p>
@@ -142,7 +130,6 @@
 
                                         </span>
                                     <span class="msg" style="color: #ff0071;">매니저가 배정되었습니다.</span>
-                                    <a class="tell" href="tel:"></a>
                                 </p>
                             </div>
                             <div class="button_wrap">
@@ -151,13 +138,14 @@
                             </div>
                         </div>
                     </div>
+                  </form>
                     <div class="ac_detail servicelist" style="overflow: hidden; display: none;">
                         <div class="detail_wrap">
-                            <div class="left_con" th:object="${accreservationlist}" th:if="${totallist1}">
+                            <div class="left_con" th:object="${accreservationlist}" th:if="${accreservationlist}">
                                 <p>
                                     <span class="title">이용일시</span>
                                     <span th:text="*{accReservationDate}"></span>
-                                    <span th:text="*{accReservationTime}"></span>
+                                    <span th:text="|*{accReservationTime}시간|"></span>
                                 </p>
                                 <p>
                                     <span class="title">출발지</span>
@@ -169,13 +157,12 @@
                                 </p>
                                 <p>
                                     <span class="title">총 이용요금</span>
-                                    <span th:text="*{accReservationPrice}+'원'"></span>
+                                    <span th:text="|*{accReservationPrice}원|"></span>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </li>
-
             </ul>
         </div>
 
@@ -183,7 +170,7 @@
         <!-- 배정요청 -->
 
 
-        <div class="com_accordion assignment" th:object="${carereservationlist}" th:if="${totallist5}"  >
+        <div class="com_accordion assignment" th:object="${carereservationlist}" th:if="${carereservationlist}">
             <ul>
                 <!-- 매니저 배정 전... -->
                 <li class="history">
@@ -198,7 +185,7 @@
                             <p>
                                 <span class="title">이용일시</span>
                                 <span th:text="*{careReservationDate}"></span>
-                                <span th:text="*{careReservationTime}"></span>
+                                <span th:text="|*{careReservationTime}시간|"></span>
                             </p>
 
                             <p>
@@ -208,7 +195,7 @@
 
                             <p>
                                 <span class="title">총 이용요금</span>
-                                <span th:text="*{careReservationPrice}+'원'"></span>
+                                <span th:text="|*{careReservationPrice}원|"></span>
                             </p>
                         </div>
                         <div class="right_con">
@@ -220,7 +207,6 @@
 
                                         </span>
                                 <span class="msg">매니저 배정 요청중입니다.</span>
-                                <a class="tell" href="tel:"></a>
                             </p>
                         </div>
                     </div>
@@ -229,8 +215,9 @@
                 <!-- 매니저 배정 후 선택 -->
 
                 <li class="history assigned">
+                   <form action="/user/matchingAccept" method="post" name="matching">
                     <div class="ac_title"  th:object="${caremanagerInfo}" th:if="${caremanagerInfo}" >
-
+                        <input type="hidden" th:field="*{careReservationNum}">
                         <p class="service_b">돌봄서비스</p>
                         <div class="left_con">
                             <p>
@@ -264,7 +251,6 @@
 
                                         </span>
                                     <span class="msg" style="color: #ff0071;">매니저가 배정되었습니다.</span>
-                                    <a class="tell" href="tel:"></a>
                                 </p>
                             </div>
                             <div class="button_wrap">
@@ -273,13 +259,14 @@
                             </div>
                         </div>
                     </div>
+                   </form>
                     <div class="ac_detail servicelist" style="overflow: hidden; display: none;">
                         <div class="detail_wrap">
-                            <div class="left_con">
+                            <div class="left_con" th:object="${carereservationList}" th:if="${carereservationList}">
                                 <p>
                                     <span class="title">이용일시</span>
                                     <span th:text="*{careReservationDate}"></span>
-                                    <span th:text="*{careReservationTime}"></span>
+                                    <span th:text="|*{careReservationTime}시간|"></span>
                                 </p>
 
                                 <p>
@@ -288,7 +275,7 @@
                                 </p>
                                 <p>
                                     <span class="title">총 이용요금</span>
-                                    <span th:text="*{careReservationPrice}+'원'"></span>
+                                    <span th:text="|*{careReservationPrice}원|"></span>
                                 </p>
                             </div>
                         </div>
@@ -320,14 +307,15 @@
         $(this).parent().parent().parent().parent('li').css('display', 'none');
         $(".assignment").css('display', 'none');
         $(".reservation").css('display', 'block');
-        location.href = "/user/matchingAccept";
+        matching.submit();
     })
 
     /* 거절버튼 클릭 */
     $(".refuse").click(function () {
         alert('매니저 배정을 취소합니다.');
         $(this).parents("li.history").css('display', 'none');
-        location.href = "/user/matchingCancel";
+        $("form[name='matching']").attr("action", "/user/matchingCancel");
+        matching.submit();
     })
 
 

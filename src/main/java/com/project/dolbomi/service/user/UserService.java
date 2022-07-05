@@ -40,16 +40,17 @@ public interface UserService {
 
     //    동행서비스 예약자 1명 정보 status 에 따라 변경
     public AccReservationVO accgetNum1(String userEmail);
-    public AccReservationVO accgetNum2(String userEmail);
-    public AccReservationVO accgetNum3(String userEmail);
+    public User4AccDTO accManagerJoin(String userEmail);
+    public User4AccDTO accgetNum2(String userEmail);
+    public User4AccDTO accgetNum3(String userEmail);
     public AccReservationVO accgetNum4(String userEmail);
 
 
     // 동행서비스 매니저 배정 수락 user_userdetails페이지
-    public void AccManagerY(String userEmail);
+    public void AccManagerY(Long accReservationNum);
 
     // 동행서비스 매니저 배정 거절 user_userdetails페이지
-    public void AccManagerN(String userEmail);
+    public void AccManagerN(Long accReservationNum);
 
     // 동행서비스고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
     public void Accdelete(Long accReservationNum);
@@ -73,8 +74,9 @@ public interface UserService {
 
     //    돌봄서비스 예약자 1명 정보 status 에 따라 변경
     public CareReservationVO caregetNum1(String userEmail);
-    public CareReservationVO caregetNum2(String userEmail);
-    public CareReservationVO caregetNum3(String userEmail);
+    public User4CareDTO careManagerJoin(String userEmail);
+    public User4CareDTO caregetNum2(String userEmail);
+    public User4CareDTO caregetNum3(String userEmail);
     public CareReservationVO caregetNum4(String userEmail);
     // user_userdetails의 카운트 횟수.  CARE_RESERVATION_STATUS 에 따라 변경
     public int caregetTotal5(String userEmail);
@@ -83,10 +85,10 @@ public interface UserService {
     public int caregetTotal8(String userEmail);
 
     // 돌봄서비스 매니저 배정 수락 user_userdetails페이지
-    public void CareManagerY(String userEmail);
+    public void CareManagerY(Long careReservationNum);
 
     // 돌봄서비스 매니저 배정 거절 user_userdetails페이지
-    public void CareManagerN(String userEmail);
+    public void CareManagerN(Long careReservationNum);
 
     // 돌봄서비스고객이 예약취소,user_userdetails2 페이지의 돌봄예약 취소
     public void Caredelete(Long careReservationNum);

@@ -88,12 +88,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AccReservationVO accgetNum2(String userEmail) {
+    public User4AccDTO accManagerJoin(String userEmail) {
+        return accReservationDAO.accManagerJoin(userEmail);
+    }
+
+    @Override
+    public User4AccDTO accgetNum2(String userEmail) {
         return accReservationDAO.accgetNum2(userEmail);
     }
 
     @Override
-    public AccReservationVO accgetNum3(String userEmail) {
+    public User4AccDTO accgetNum3(String userEmail) {
         return accReservationDAO.accgetNum3(userEmail);
     }
 
@@ -105,13 +110,13 @@ public class UserServiceImpl implements UserService {
 
     // 동행서비스 매니저 배정 수락 user_userdetails페이지
     @Override
-    public void AccManagerY(String userEmail) {
-        accReservationDAO.AccManagerY(userEmail);
+    public void AccManagerY(Long accReservationNum) {
+        accReservationDAO.AccManagerY(accReservationNum);
     }
     // 동행서비스 매니저 배정 거절 user_userdetails페이지
     @Override
-    public void AccManagerN(String userEmail) {
-        accReservationDAO.AccManagerN(userEmail);
+    public void AccManagerN(Long accReservationNum) {
+        accReservationDAO.AccManagerN(accReservationNum);
     }
     // 동행서비스고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
     @Override
@@ -156,12 +161,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public CareReservationVO caregetNum2(String userEmail) {
+    public User4CareDTO careManagerJoin(String userEmail) {
+        return careReservationDAO.careManagerJoin(userEmail);
+    }
+
+    @Override
+    public User4CareDTO caregetNum2(String userEmail) {
         return careReservationDAO.caregetNum2(userEmail);
     }
 
     @Override
-    public CareReservationVO caregetNum3(String userEmail) {
+    public User4CareDTO caregetNum3(String userEmail) {
         return careReservationDAO.caregetNum3(userEmail);
     }
 
@@ -188,13 +198,13 @@ public class UserServiceImpl implements UserService {
     }
     // 돌봄서비스 매니저 배정 수락 user_userdetails페이지
     @Override
-    public void CareManagerY(String userEmail) {
-        careReservationDAO.CareManagerY(userEmail);
+    public void CareManagerY(Long careReservationNum) {
+        careReservationDAO.CareManagerY(careReservationNum);
     }
     // 돌봄서비스 매니저 배정 거절 user_userdetails페이지
     @Override
-    public void CareManagerN(String userEmail) {
-        careReservationDAO.CareManagerN(userEmail);
+    public void CareManagerN(Long careReservationNum) {
+        careReservationDAO.CareManagerN(careReservationNum);
     }
     // 돌봄서비스고객이 예약취소,user_userdetails2 페이지의 돌봄예약 취소
     @Override

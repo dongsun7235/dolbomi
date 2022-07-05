@@ -24,14 +24,14 @@
 <header th:replace="header.html"></header>
 <div class="sub_page_wrap">
     <!-- sub_title_wrap -->
-    <!--<div class="sub_title_wrap title_only">
+    <div class="sub_title_wrap title_only">
 
-        <div class="sub_title" th:object="${accreservationlist}">
+        <div class="sub_title">
             <p>서비스 이용 내역</p>
-            <p th:text="*{accReservationName}+'님의 서비스 이용 내역입니다.'"></p>
+            <p th:text="|${session.userVO.userName}님의 서비스 이용 내역입니다.|"></p>
         </div>
 
-    </div>-->
+    </div>
 
     <div class="common_content_wrap">
         <!--<div class="form_sub_tab column">
@@ -46,18 +46,6 @@
 
             </ul>
         </div>-->
-        <div class="form_sub_tab column">
-            <ul class="tab">
-                <!-- <li id="all" >전체</li> -->
-                <li id="match" onclick="location.href='/user/user_userdetails'"><span>배정요청</span><em th:text="*{totallist1}"></em></li>
-                <li id="reserv" onclick="location.href='/user/user_userdetails2'"><span>예약</span><em th:text="*{totallist2}" ></em></li>
-                <li id="proc" onclick="location.href='/user/user_userdetails3'"><span>서비스중</span><em th:text="*{totallist3}"></em></li>
-                <!--<li id="end" class="current" onclick="location.href='/user/user_userdetails4'"><span>종료</span><em>0</em></li>
-                -->
-                <li id="end" class="current"><span>종료</span><em th:text="*{totallist4}"></em></li>
-
-            </ul>
-        </div>
         <div class="form_sub_tab column">
             <ul class="tab">
                 <!-- <li id="all" >전체</li> -->

@@ -72,4 +72,8 @@ public class AccreservationMapperTests {
         accReservationMapper.AccReservationUpdate(44L, "APPLE");
     }
 
+    @Test
+    public void bigTest(){
+        accReservationMapper.accManagerJoin("aaa@naver.com");
+    }
 }

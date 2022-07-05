@@ -38,12 +38,12 @@ public class AccReservationDAO {
 
 
     // 동행서비스 매니저 배정 수락 user_userdetails페이지
-    public void AccManagerY(String userEmail){
-        accReservationMapper.AccManagerY(userEmail) ;
+    public void AccManagerY(Long accReservationNum){
+        accReservationMapper.AccManagerY(accReservationNum) ;
     }
     // 동행서비스 매니저 배정 거절 user_userdetails페이지
-    public void AccManagerN(String userEmail){
-        accReservationMapper.AccManagerN(userEmail);
+    public void AccManagerN(Long accReservationNum){
+        accReservationMapper.AccManagerN(accReservationNum);
     }
 
     // 동행서비스고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
@@ -70,8 +70,9 @@ public class AccReservationDAO {
     }
 
     public AccReservationVO accgetNum1(String userEmail){ return accReservationMapper.accgetNum1(userEmail);}
-    public AccReservationVO accgetNum2(String userEmail){ return accReservationMapper.accgetNum2(userEmail);}
-    public AccReservationVO accgetNum3(String userEmail){ return accReservationMapper.accgetNum3(userEmail);}
+    public User4AccDTO accManagerJoin(String userEmail){return accReservationMapper.accManagerJoin(userEmail);}
+    public User4AccDTO accgetNum2(String userEmail){ return accReservationMapper.accgetNum2(userEmail);}
+    public User4AccDTO accgetNum3(String userEmail){ return accReservationMapper.accgetNum3(userEmail);}
     public AccReservationVO accgetNum4(String userEmail){ return accReservationMapper.accgetNum4(userEmail);}
 
     public int accgetTotal1(String userEmail){

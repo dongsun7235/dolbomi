@@ -176,12 +176,6 @@ public class UserController {
         return "/user/user_details2";
     }
 
-    //    서비스 상태 변경(예약취소)
-    @GetMapping("reservCancel")
-    public void reservationCancel(){
-
-    }
-
 
     //    페이지 이동
     @GetMapping("acc_reservation1")
@@ -218,18 +212,12 @@ public class UserController {
     public void regi2(){}
 
     @GetMapping("user_userdetails")
-    public void user_userdetails(  Model model,HttpServletRequest request) {
+    public void user_userdetails(Model model, HttpServletRequest request) {
 
         HttpSession httpSession = request.getSession();
-        httpSession.getAttribute("userEmail");
         String email=String.valueOf(httpSession.getAttribute("userEmail"));
         userService.accgetTotal1(email);
         log.info("-----------------------"+email);
-        Long accReservationNum = Long.valueOf(45);
-        Long careReservationNum = Long.valueOf(46);
-        String accManageremail = "매니저2@naver.com";
-        String careManageremail = "매니저3@naver.com";
-
 
         model.addAttribute("accreservationlist", userService.accgetNum1(email));
         model.addAttribute("totallist1", userService.accgetTotal1(email));
@@ -244,8 +232,8 @@ public class UserController {
         model.addAttribute("totallist8", userService.caregetTotal8(email));
 
 
-        model.addAttribute("accmanagerInfo", managerService.managerInfoacc(email));
-        model.addAttribute("caremanagerInfo", managerService.managerInfocare(email));
+        model.addAttribute("accmanagerInfo", userService.accManagerJoin(email));
+        model.addAttribute("caremanagerInfo", userService.careManagerJoin(email));
 
 
 
@@ -258,9 +246,16 @@ public class UserController {
         HttpSession httpSession = request.getSession();
         httpSession.getAttribute("userEmail");
         String email=String.valueOf(httpSession.getAttribute("userEmail"));
-        userService.AccManagerY(email);
-        userService.CareManagerY(email);
 
+        String accNum = request.getParameter("accReservationNum");
+        String careNum = request.getParameter("careReservationNum");
+
+        if(accNum != null){
+            userService.AccManagerY(Long.parseLong(accNum));
+            return "user/user_userdetails2";
+        }
+
+        userService.CareManagerY(Long.parseLong(careNum));
         return "user/user_userdetails2";
     }
 
@@ -270,10 +265,19 @@ public class UserController {
         HttpSession httpSession = request.getSession();
         httpSession.getAttribute("userEmail");
         String email=String.valueOf(httpSession.getAttribute("userEmail"));
-        userService.AccManagerN(email);
-        userService.CareManagerN(email);
+
+        String accNum = request.getParameter("accReservationNum");
+        String careNum = request.getParameter("careReservationNum");
+
+        if(accNum != null){
+            userService.AccManagerN(Long.parseLong(accNum));
+            return "user/user_userdetails";
+        }
+
+        userService.CareManagerN(Long.parseLong(careNum));
         return "user/user_userdetails";
     }
+
     @GetMapping("user_userdetails2")
     public void user_userdetails2(Model model,HttpServletRequest request) {
 
@@ -293,10 +297,22 @@ public class UserController {
         model.addAttribute("totallist7", userService.caregetTotal7(email));
         model.addAttribute("totallist8", userService.caregetTotal8(email));
 
+    }
 
-        model.addAttribute("accmanagerInfo", userService.accgetManagerInfo(email));
-        model.addAttribute("caremanagerInfo", userService.caregetManagerInfo(email));
+    //    서비스 상태 변경(예약취소)
+    @PostMapping("reservCancel")
+    public String reservationCancel(HttpServletRequest request){
 
+        String accNum = request.getParameter("accReservationNum");
+        String careNum = request.getParameter("careReservationNum");
+
+        if(accNum != null){
+            userService.Accdelete(Long.parseLong(accNum));
+            return "user/user_userdetails";
+        }
+
+        userService.Caredelete(Long.parseLong(careNum));
+        return "user/user_userdetails";
     }
 
     @GetMapping("user_userdetails3")
@@ -316,10 +332,6 @@ public class UserController {
         model.addAttribute("totallist6", userService.caregetTotal6(email));
         model.addAttribute("totallist7", userService.caregetTotal7(email));
         model.addAttribute("totallist8", userService.caregetTotal8(email));
-
-
-        model.addAttribute("accmanagerInfo", userService.accgetManagerInfo(email));
-        model.addAttribute("caremanagerInfo", userService.caregetManagerInfo(email));
 
 
     }

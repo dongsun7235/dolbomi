@@ -27,9 +27,9 @@
     <!-- sub_title_wrap -->
     <div class="sub_title_wrap title_only">
 
-        <div class="sub_title" th:object="${accreservationlist}">
+        <div class="sub_title">
             <p>서비스 이용 내역</p>
-            <p th:text="*{accReservationName}+'님의 서비스 이용 내역입니다.'"></p>
+            <p th:text="|${session.userVO.userName}님의 서비스 이용 내역입니다.|"></p>
         </div>
 
     </div>
@@ -45,7 +45,7 @@
             </ul>
         </div>
         <!-- 서비스중 -->
-        <div class="com_accordion servicing"  th:object="${accreservationlist}"  th:if="${totallist3}">
+        <div class="com_accordion servicing"  th:object="${accreservationlist}"  th:if="${accreservationlist}">
             <ul>
                 <li class="history">
                     <div class="ac_title">
@@ -59,7 +59,7 @@
                             <p>
                                 <span class="title">이용일시</span>
                                 <span th:text="*{accReservationDate}"></span>
-                                <span th:text="*{accReservationTime}"></span>
+                                <span th:text="|*{accReservationTime}시간|"></span>
                             </p>
                             <p>
                                 <span class="title">출발지</span>
@@ -72,7 +72,7 @@
 
                             <p>
                                 <span class="title">총 이용요금</span>
-                                <span th:text="*{accReservationPrice}+'원'"></span>
+                                <span th:text="|*{accReservationPrice}원|"></span>
                             </p>
                         </div>
                         <div class="left_con" th:object="${accmanagerInfo}">
@@ -102,7 +102,7 @@
             </ul>
         </div>
         <!-- 서비스중 -->
-        <div class="com_accordion servicing"  th:object="${carereservationlist}"  th:if="${totallist7}">
+        <div class="com_accordion servicing"  th:object="${carereservationlist}"  th:if="${carereservationlist}">
             <ul>
                 <li class="history">
                     <div class="ac_title">
@@ -129,7 +129,7 @@
                                 <span th:text="*{careReservationPrice}+'원'"></span>
                             </p>
                         </div>
-                        <div class="left_con" th:object="${caremanagerInfo}">
+                        <div class="left_con">
                             <p>
                                 <span class="title">매니저 이름</span>
                                 <span th:text="*{managerName}"></span>
