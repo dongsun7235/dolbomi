@@ -83,7 +83,8 @@
                             </p>
                             <p>
                                 <span class="title">성별</span>
-                                <span th:text="*{managerGender}"></span>
+                                <span th:if="*{managerGender == 'M'}" th:text="남자"></span>
+                                <span th:if="*{managerGender == 'W'}" th:text="여자"></span>
                             </p>
                             <p>
                                 <span class="title">연락처</span>
@@ -91,7 +92,8 @@
                             </p>
                             <p>
                                 <span class="title">운전 가능 여부</span>
-                                <span th:text="*{managerDriveOk}"><br></span>
+                                <span th:if="*{managerDriveOk == 'Y'}" th:text="가능"><br></span>
+                                <span th:if="*{managerDriveOk == 'N'}" th:text="불가능"><br></span>
                             </p>
                             <p>
                                 <span class="title">활동 지역</span>
