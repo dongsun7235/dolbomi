@@ -37,9 +37,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     }
 
-    @Override
+     @Override
     public void withdrawal(String userEmail) {
-
+        managerDAO.withdrawal(userEmail);
     }
 
     @Override
@@ -98,5 +98,10 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public ManagerVO managerInfocare(String userEmail) {
         return managerDAO.managerInfocare(userEmail);
+    }
+    
+     @Override
+    public void modify(ManagerVO managerVO) {
+        managerDAO.managermodify(managerVO);
     }
 }
