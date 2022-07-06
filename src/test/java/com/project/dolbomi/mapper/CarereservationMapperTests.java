@@ -79,4 +79,10 @@ public class CarereservationMapperTests {
 //        careReservationMapper.CareReservationUpdate(26L, "APPLE");
 //    }
 
+
+    @Test
+    public void secondList(){
+        careReservationMapper.careManagerView2("apple@naver.com");
+    }
+
 }

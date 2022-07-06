@@ -92,8 +92,18 @@ public class CareReservationDAO {
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO caregetManagerInfo(String userEmail){return careReservationMapper.caregetManagerInfo(userEmail);}
 
+    //동행 서비스 매니저 연결,status 0
+    public CareReservationVO careManagerView(String managerEmail){return careReservationMapper.careManagerView(managerEmail);}
+
+    //동행 서비스 매니저 연결,status 6
+    public CareReservationVO careManagerView2(String managerEmail){return careReservationMapper.careManagerView2(managerEmail);}
+
     //돌봄 서비스 종료 리스트
     public List<User4CareDTO> careServiceEndList(String userEmail){return careReservationMapper.careServiceEndList(userEmail);}
+
+    //manager3 서비스 종료 리스트
+    public List<CareReservationVO> careManagerServiceEndList(String managerEmail){return careReservationMapper.careManagerServiceEndList(managerEmail);}
+
     public void CareReservationUpdate(Long careReservationNum, String managerEmail){
         careReservationMapper.CareReservationUpdate(careReservationNum, managerEmail);
     }

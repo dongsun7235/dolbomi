@@ -105,7 +105,8 @@
                             </p>
                             <p>
                                 <span class="title">성별</span>
-                                <span th:text="*{managerGender}"></span>
+                                <span th:if="*{managerGender == 'M'}" th:text="남자"></span>
+                                <span th:if="*{managerGender == 'W'}" th:text="여자"></span>
                             </p>
                             <p>
                                 <span class="title">연락처</span>
@@ -113,7 +114,8 @@
                             </p>
                             <p>
                                 <span class="title">운전 가능 여부</span>
-                                <span th:text="*{managerDriveOk}"><br></span>
+                                <span th:if="*{managerDriveOk == 'Y'}" th:text="가능"><br></span>
+                                <span th:if="*{managerDriveOk == 'N'}" th:text="불가능"><br></span>
                             </p>
                             <p>
                                 <span class="title">활동 지역</span>
@@ -170,11 +172,11 @@
         <!-- 배정요청 -->
 
 
-        <div class="com_accordion assignment" th:object="${carereservationlist}" th:if="${carereservationlist}">
+        <div class="com_accordion assignment" >
             <ul>
                 <!-- 매니저 배정 전... -->
                 <li class="history">
-                    <div class="ac_title" >
+                    <div class="ac_title" th:object="${carereservationlist}" th:if="${carereservationlist}">
 
                         <p class="service_b">돌봄서비스</p>
                         <div class="left_con">
@@ -226,7 +228,8 @@
                             </p>
                             <p>
                                 <span class="title">성별</span>
-                                <span th:text="*{managerGender}"></span>
+                                <span th:if="*{managerGender == 'M'}" th:text="남자"></span>
+                                <span th:if="*{managerGender} == 'W'" th:text="여자"></span>
                             </p>
                             <p>
                                 <span class="title">연락처</span>
@@ -234,7 +237,8 @@
                             </p>
                             <p>
                                 <span class="title">운전 가능 여부</span>
-                                <span th:text="*{managerDriveOk}"><br></span>
+                                <span th:if="*{managerDriveOk == 'Y'}" th:text="가능"><br></span>
+                                <span th:if="*{managerDriveOk == 'N'}" th:text="불가능"><br></span>
                             </p>
                             <p>
                                 <span class="title">활동 지역</span>
@@ -304,18 +308,17 @@
     /* 수락버튼 클릭 */
     $(".accept").click(function () {
         alert('서비스가 예약되었습니다.');
-        $(this).parent().parent().parent().parent('li').css('display', 'none');
+ /*       $(this).parent().parent().parent().parent('li').css('display', 'none');
         $(".assignment").css('display', 'none');
-        $(".reservation").css('display', 'block');
-        matching.submit();
+        $(".reservation").css('display', 'block');*/
+        $("form[name='matching']").submit();
     })
 
     /* 거절버튼 클릭 */
     $(".refuse").click(function () {
         alert('매니저 배정을 취소합니다.');
         $(this).parents("li.history").css('display', 'none');
-        $("form[name='matching']").attr("action", "/user/matchingCancel");
-        matching.submit();
+        $("form[name='matching']").attr("action", "/user/matchingCancel").submit();
     })
 
 

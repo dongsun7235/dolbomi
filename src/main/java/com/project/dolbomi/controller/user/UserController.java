@@ -300,19 +300,20 @@ public class UserController {
     }
 
     //    서비스 상태 변경(예약취소)
-    @PostMapping("reservCancel")
+    @RequestMapping(value = "user/reservCancel", method = {RequestMethod.POST})
     public String reservationCancel(HttpServletRequest request){
 
         String accNum = request.getParameter("accReservationNum");
         String careNum = request.getParameter("careReservationNum");
-
+        log.info("accNum--------------" + accNum);
+        log.info("careNum--------------" + careNum);
         if(accNum != null){
             userService.Accdelete(Long.parseLong(accNum));
-            return "user/user_userdetails";
+            return "user/user_userdetails2";
         }
 
         userService.Caredelete(Long.parseLong(careNum));
-        return "user/user_userdetails";
+        return "user/user_userdetails2";
     }
 
     @GetMapping("user_userdetails3")

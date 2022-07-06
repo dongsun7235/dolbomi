@@ -55,6 +55,12 @@ public interface UserService {
     // 동행서비스고객이 예약취소,user_userdetails2 페이지의 동행예약 취소
     public void Accdelete(Long accReservationNum);
 
+    //동행 서비스 매니저 연결,status 0
+    public AccReservationVO accManagerView(String managerEmail);
+
+    //동행 서비스 매니저 연결,status 6
+    public AccReservationVO accManagerView2(String managerEmail);
+
     //동행서비스 매니저의 업무 시작,manager 페이지의 동행예약목록
     public void AccManagerStart(Long accReservationNum);
 
@@ -63,6 +69,7 @@ public interface UserService {
 
     //동행서비스 매니저가 업무 취소,manager 페이지의 동행예약목록
     public void AccManagerCancel(Long accReservationNum);
+
 
 
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
@@ -92,6 +99,12 @@ public interface UserService {
 
     // 돌봄서비스고객이 예약취소,user_userdetails2 페이지의 돌봄예약 취소
     public void Caredelete(Long careReservationNum);
+
+    //동행 서비스 매니저 연결,status 0
+    public CareReservationVO careManagerView(String managerEmail);
+
+    //동행 서비스 매니저 연결,status 6
+    public CareReservationVO careManagerView2(String managerEmail);
 
     //돌봄서비스 매니저의 업무 시작,manager 페이지의 동행예약목록
     public void CareManagerStart(Long careReservationNum);
@@ -196,4 +209,10 @@ public interface UserService {
 
     // 동행 서비스 종료 리스트
     public List<User4AccDTO> accServiceEndList(String userEmail);
+
+    //manager3 서비스 종료 리스트
+    public List<CareReservationVO> careManagerServiceEndList(String managerEmail);
+
+    //manager3 서비스 종료 리스트
+    public List<AccReservationVO> accManagerServiceEndList(String managerEmail);
 }
