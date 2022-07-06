@@ -45,11 +45,11 @@
             </ul>
         </div>
         <!-- 예약 -->
-        <div class="com_accordion reservation" >
+      <form action="/user/reservCancel" method="post" name="reservdelete" style="position: relative">
+        <div class="com_accordion reservation" th:object="${accreservationlist}" th:if="${accreservationlist}">
             <ul>
                 <li class="history">
-                  <form action="/user/reservCancel" method="post" name="reservdelete">
-                    <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
+                    <div class="ac_title">
                         <input type="hidden" th:field="*{accReservationNum}">
                         <p class="service_a">동행서비스</p>
                         <div class="left_con">
@@ -104,15 +104,13 @@
                             <a href='javascript:void(0);' class="cancel">예약 취소</a>
                         </div>
                     </div>
-                  </form>
                 </li>
             </ul>
         </div>
-        <div class="com_accordion reservation" >
+        <div class="com_accordion reservation" th:object="${carereservationlist}" th:if="${carereservationlist}">
             <ul>
                 <li class="history">
-                    <form action="/user/reservCancel" method="post" name="reservdelete" >
-                        <div class="ac_title" th:object="${carereservationlist}" th:if="${carereservationlist}">
+                        <div class="ac_title">
                             <input type="hidden" th:field="*{careReservationNum}">
                             <p class="service_b">돌봄서비스</p>
                             <div class="left_con">
@@ -164,10 +162,10 @@
                                 <a href='javascript:void(0);' class="cancel">예약 취소</a>
                             </div>
                         </div>
-                    </form>
                 </li>
             </ul>
         </div>
+      </form>
     </div>
 </div>
 <footer th:replace="footer.html"></footer>
