@@ -419,13 +419,11 @@ public class UserController {
 
     //    게시글 상세보기
     @GetMapping({"readReview", "modifyReview"})
-    public String readReview(Long reviewNum, HttpServletRequest req, Model model) {
+    public void readReview(Long reviewNum, HttpServletRequest req, Model model) {
         log.info("----------------------------");
         log.info(req.getRequestURI() + "............. : " + reviewNum);
         log.info("----------------------------");
         model.addAttribute("review", userService.get(reviewNum));
-
-        return "/user/readReview";
     }
 
     @GetMapping("review2")
