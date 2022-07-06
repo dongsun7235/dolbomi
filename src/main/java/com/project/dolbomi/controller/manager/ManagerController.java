@@ -136,12 +136,12 @@ public class ManagerController {
         HttpSession httpSession = request.getSession();
         String email=String.valueOf(httpSession.getAttribute("managerEmail"));
 
-        model.addAttribute("totallist2", userService.accgetTotal2(email));
-        model.addAttribute("totallist3", userService.accgetTotal3(email));
-        model.addAttribute("totallist4", userService.accgetTotal4(email));
-        model.addAttribute("totallist6", userService.caregetTotal6(email));
-        model.addAttribute("totallist7", userService.caregetTotal7(email));
-        model.addAttribute("totallist8", userService.caregetTotal8(email));
+        model.addAttribute("totallist2", userService.accgetManagerTotal2(email));
+        model.addAttribute("totallist3", userService.accgetManagerTotal3(email));
+        model.addAttribute("totallist4", userService.accgetManagerTotal4(email));
+        model.addAttribute("totallist6", userService.caregetManagerTotal6(email));
+        model.addAttribute("totallist7", userService.caregetManagerTotal7(email));
+        model.addAttribute("totallist8", userService.caregetManagerTotal8(email));
 
         model.addAttribute("accreservationlist", userService.accManagerView(email));
         model.addAttribute("carereservationlist",userService.careManagerView(email));
@@ -177,13 +177,12 @@ public class ManagerController {
         httpSession.getAttribute("managerEmail");
         String email=String.valueOf(httpSession.getAttribute("managerEmail"));
 
-        model.addAttribute("totallist2", userService.accgetTotal2(email));
-        model.addAttribute("totallist3", userService.accgetTotal3(email));
-        model.addAttribute("totallist4", userService.accgetTotal4(email));
-        model.addAttribute("totallist6", userService.caregetTotal6(email));
-        model.addAttribute("totallist7", userService.caregetTotal7(email));
-        model.addAttribute("totallist8", userService.caregetTotal8(email));
-
+        model.addAttribute("totallist2", userService.accgetManagerTotal2(email));
+        model.addAttribute("totallist3", userService.accgetManagerTotal3(email));
+        model.addAttribute("totallist4", userService.accgetManagerTotal4(email));
+        model.addAttribute("totallist6", userService.caregetManagerTotal6(email));
+        model.addAttribute("totallist7", userService.caregetManagerTotal7(email));
+        model.addAttribute("totallist8", userService.caregetManagerTotal8(email));
         model.addAttribute("accreservationlist", userService.accManagerView2(email));
         model.addAttribute("carereservationlist",userService.careManagerView2(email));
 
@@ -194,12 +193,12 @@ public class ManagerController {
         HttpSession httpSession = request.getSession();
         String email=String.valueOf(httpSession.getAttribute("managerEmail"));
 
-        model.addAttribute("totallist2", userService.accgetTotal2(email));
-        model.addAttribute("totallist3", userService.accgetTotal3(email));
-        model.addAttribute("totallist4", userService.accgetTotal4(email));
-        model.addAttribute("totallist6", userService.caregetTotal6(email));
-        model.addAttribute("totallist7", userService.caregetTotal7(email));
-        model.addAttribute("totallist8", userService.caregetTotal8(email));
+        model.addAttribute("totallist2", userService.accgetManagerTotal2(email));
+        model.addAttribute("totallist3", userService.accgetManagerTotal3(email));
+        model.addAttribute("totallist4", userService.accgetManagerTotal4(email));
+        model.addAttribute("totallist6", userService.caregetManagerTotal6(email));
+        model.addAttribute("totallist7", userService.caregetManagerTotal7(email));
+        model.addAttribute("totallist8", userService.caregetManagerTotal8(email));
 
         model.addAttribute("accreservationlist", userService.accManagerServiceEndList(email));
         model.addAttribute("carereservationlist",userService.careManagerServiceEndList(email));

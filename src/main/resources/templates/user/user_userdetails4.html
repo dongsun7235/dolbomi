@@ -58,12 +58,12 @@
         <div class="form_sub_tab column">
             <ul class="tab">
                 <!-- <li id="all" >전체</li> -->
-                <li id="match" onclick="location.href='/user/user_userdetails'"><span>배정요청</span><em th:text="*{totallist1}"></em></li>
-                <li id="reserv" onclick="location.href='/user/user_userdetails2'"><span>예약</span><em th:text="*{totallist2}" ></em></li>
-                <li id="proc" onclick="location.href='/user/user_userdetails3'"><span>서비스중</span><em th:text="*{totallist3}"></em></li>
+                <li id="match" onclick="location.href='/user/user_userdetails'"><span>배정요청</span><em th:text="*{totallist1}+*{totallist5}"></em></li>
+                <li id="reserv" onclick="location.href='/user/user_userdetails2'"><span>예약</span><em th:text="*{totallist2}+*{totallist6}" ></em></li>
+                <li id="proc" onclick="location.href='/user/user_userdetails3'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
                 <!--<li id="end" class="current" onclick="location.href='/user/user_userdetails4'"><span>종료</span><em>0</em></li>
                 -->
-                <li id="end" class="current"><span>종료</span><em th:text="*{totallist4}"></em></li>
+                <li id="end" class="current"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
 
             </ul>
         </div>

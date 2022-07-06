@@ -89,6 +89,16 @@ public class CareReservationDAO {
     public int caregetTotal8(String userEmail){
         return careReservationMapper.caregetTotal8(userEmail);
     }
+
+    public int caregetManagerTotal6(String managerEmail){
+        return careReservationMapper.caregetManagerTotal6(managerEmail);
+    }
+    public int caregetManagerTotal7(String managerEmail){
+        return careReservationMapper.caregetManagerTotal7(managerEmail);
+    }
+    public int caregetManagerTotal8(String managerEmail){
+        return careReservationMapper.caregetManagerTotal8(managerEmail);
+    }
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO caregetManagerInfo(String userEmail){return careReservationMapper.caregetManagerInfo(userEmail);}
 

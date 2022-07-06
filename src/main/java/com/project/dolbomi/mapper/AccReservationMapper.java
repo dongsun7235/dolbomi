@@ -66,6 +66,10 @@ public interface AccReservationMapper {
     public int accgetTotal2(String userEmail);
     public int accgetTotal3(String userEmail);
     public int accgetTotal4(String userEmail);
+
+    public int accgetManagerTotal2(String managerEmail);
+    public int accgetManagerTotal3(String managerEmail);
+    public int accgetManagerTotal4(String managerEmail);
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO accgetManagerInfo(String userEmail);
 

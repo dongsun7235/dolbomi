@@ -38,6 +38,10 @@ public interface UserService {
     public int accgetTotal3(String userEmail);
     public int accgetTotal4(String userEmail);
 
+    public int accgetManagerTotal2(String managerEmail);
+    public int accgetManagerTotal3(String managerEmail);
+    public int accgetManagerTotal4(String managerEmail);
+
     //    동행서비스 예약자 1명 정보 status 에 따라 변경
     public AccReservationVO accgetNum1(String userEmail);
     public User4AccDTO accManagerJoin(String userEmail);
@@ -90,6 +94,10 @@ public interface UserService {
     public int caregetTotal6(String userEmail);
     public int caregetTotal7(String userEmail);
     public int caregetTotal8(String userEmail);
+
+    public int caregetManagerTotal6(String managerEmail);
+    public int caregetManagerTotal7(String managerEmail);
+    public int caregetManagerTotal8(String managerEmail);
 
     // 돌봄서비스 매니저 배정 수락 user_userdetails페이지
     public void CareManagerY(Long careReservationNum);
