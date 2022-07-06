@@ -251,10 +251,11 @@ public class UserController {
         String careNum = request.getParameter("careReservationNum");
 
         if(accNum != null){
+            log.info("accNum" + accNum);
             userService.AccManagerY(Long.parseLong(accNum));
             return "user/user_userdetails2";
         }
-
+        log.info("careNum"+careNum);
         userService.CareManagerY(Long.parseLong(careNum));
         return "user/user_userdetails2";
     }

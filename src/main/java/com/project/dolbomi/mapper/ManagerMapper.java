@@ -22,7 +22,7 @@ public interface ManagerMapper {
     public int careapply(long careReservationNum);
 
     //    매니저 탈퇴
-    public String delete(String userEmail);
+    public void delete(String userEmail);
 
 
     public int getTotal();
@@ -45,4 +45,6 @@ public interface ManagerMapper {
     public ManagerVO managerInfo(String managerEmail);
     public ManagerVO managerInfoacc(String userEmail);
     public ManagerVO managerInfocare(String userEmail);
+
+    public void updateProfile(ManagerVO managerVO);
 }

@@ -159,16 +159,6 @@ public class MemberController {
        return "/member/managerlogin";
     }
 
-//   매니저 회원 탈퇴
-//    @GetMapping("exitM")
-//    public void managerExit(){
-//
-//    }
-
-    @PostMapping("exitM")
-    public String managerExit(){
-        return "/member/mainpage";
-    }
 
 //    회원정보 변경
 //    @GetMapping("updateInfor")
@@ -256,21 +246,43 @@ public class MemberController {
     @GetMapping("profilechange")
     public void profilechange( HttpServletRequest request, Model model) {
         HttpSession httpSession = request.getSession();
-        httpSession.getAttribute("userEmail");
-        String email=String.valueOf(httpSession.getAttribute("userEmail"));
-        log.info("----------------------------");
-        log.info(request.getRequestURI() + "............. : " + email);
-        log.info("----------------------------");
-        model.addAttribute("profile1", userService.profile(email));
+        if(String.valueOf(httpSession.getAttribute("userEmail"))!=null){
+            String email=String.valueOf(httpSession.getAttribute("userEmail"));
+            model.addAttribute("profile1", userService.profile(email));
+            log.info("----------------------------");
+            log.info(request.getRequestURI() + "............. : " + email);
+        }
+        if(String.valueOf(httpSession.getAttribute("managerEmail"))!=null){
+            String email=String.valueOf(httpSession.getAttribute("managerEmail"));
+            model.addAttribute("profile2", managerService.managerInfo(email));
+            log.info("----------------------------");
+            log.info(request.getRequestURI() + "............. : " + email);
+        }
 
     }
 
-    @PostMapping("delete")
-    public String profiledelete(String userEmail,String managerEmail){
-        log.info("----------------------------");
-        log.info("remove + ............. : " + userEmail);
-        log.info("----------------------------");
-        userService.withdrawal(userEmail);
+//    매니저 탈퇴
+    @GetMapping("delete")
+    public String profiledelete(HttpSession session,HttpServletRequest request){
+        //HttpSession httpSession = request.getSession();
+
+        if(String.valueOf(request.getSession().getAttribute("userEmail"))!=null){
+            log.info("----------------------------");
+            log.info("remove + ............. :  userEmail");
+            String email=String.valueOf(request.getSession().getAttribute("userEmail"));
+            log.info("userEmail" + email);
+            userService.withdrawal(email);
+
+
+        }
+        if(String.valueOf(request.getSession().getAttribute("managerEmail"))!=null){
+            log.info("----------------------------");
+            log.info("remove + ............. : managerEmail ");
+            String email=String.valueOf(request.getSession().getAttribute("managerEmail"));
+            managerService.withdrawal(email);
+
+        }
+        session.invalidate(); // 세션 전체 제거, 무효화 
 
         return "/member/mainpage";
     }

@@ -261,9 +261,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean withdrawal(String userEmail) {
-        return userDAO.withdrawal(userEmail);
+    public void withdrawal(String userEmail) {
+        userDAO.withdrawal(userEmail);
     }
+
 
     @Override
     public boolean userLogIn(String userEmail, String userPw) {

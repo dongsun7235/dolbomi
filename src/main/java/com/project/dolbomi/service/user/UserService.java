@@ -122,7 +122,7 @@ public interface UserService {
     public void join(UserVO userVO);
 
     //회원 탈퇴
-    public boolean withdrawal(String userEmail);
+    public void withdrawal(String userEmail);
 
     //로그 인
     public boolean userLogIn(String userEmail, String userPw);

@@ -14,7 +14,7 @@ public interface UserMapper {
     public void insert(UserVO userVO);
 
     //회원 탈퇴
-    public String delete(String userEmail);
+    public void delete(String userEmail);
 
     //프로필 페이지
     public String select(String userEmail);

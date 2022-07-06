@@ -65,10 +65,9 @@ public class UserDAO {
 
 
     //회원 탈퇴
-    public boolean withdrawal(String userEmail){
-        return userMapper.delete(userEmail).equals(1) ;
+    public void withdrawal(String userEmail){
+        userMapper.delete(userEmail) ;
     }
-
     //프로필 페이지
     public UserVO selectProfile(String userEmail){
         return userMapper.selectProfile(userEmail);
