@@ -83,6 +83,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int accgetManagerTotal2(String managerEmail) {
+        return accReservationDAO.accgetManagerTotal2(managerEmail);
+    }
+
+    @Override
+    public int accgetManagerTotal3(String managerEmail) {
+        return accReservationDAO.accgetManagerTotal3(managerEmail);
+    }
+
+    @Override
+    public int accgetManagerTotal4(String managerEmail) {
+        return accReservationDAO.accgetManagerTotal4(managerEmail);
+    }
+
+    @Override
     public AccReservationVO accgetNum1(String userEmail) {
         return accReservationDAO.accgetNum1(userEmail);
     }
@@ -206,6 +221,22 @@ public class UserServiceImpl implements UserService {
     public int caregetTotal8(String userEmail) {
         return careReservationDAO.caregetTotal8(userEmail);
     }
+
+    @Override
+    public int caregetManagerTotal6(String managerEmail) {
+        return careReservationDAO.caregetManagerTotal6(managerEmail);
+    }
+
+    @Override
+    public int caregetManagerTotal7(String managerEmail) {
+        return careReservationDAO.caregetManagerTotal7(managerEmail);
+    }
+
+    @Override
+    public int caregetManagerTotal8(String managerEmail) {
+        return careReservationDAO.caregetManagerTotal8(managerEmail);
+    }
+
     // 돌봄서비스 매니저 배정 수락 user_userdetails페이지
     @Override
     public void CareManagerY(Long careReservationNum) {

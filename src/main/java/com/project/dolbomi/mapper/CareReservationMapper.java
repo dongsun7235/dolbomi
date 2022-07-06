@@ -54,6 +54,10 @@ public interface CareReservationMapper {
     public int caregetTotal6(String userEmail);
     public int caregetTotal7(String userEmail);
     public int caregetTotal8(String userEmail);
+
+    public int caregetManagerTotal6(String managerEmail);
+    public int caregetManagerTotal7(String managerEmail);
+    public int caregetManagerTotal8(String managerEmail);
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO caregetManagerInfo(String userEmail);
 

@@ -171,6 +171,21 @@
     <select id="caregetTotal8" resultType="_int">
         SELECT COUNT(CARE_RESERVATION_STATUS) FROM TBL_CARE_RESERVATION WHERE USER_EMAIL=#{userEmail} AND CARE_RESERVATION_STATUS='7'
     </select>
+
+    <!-- user_userdetails2의 카운트 횟수.  CARE_RESERVATION_STATUS 에 따라 변경-->
+    <select id="caregetManagerTotal6" resultType="_int">
+        SELECT COUNT(CARE_RESERVATION_STATUS) FROM TBL_CARE_RESERVATION WHERE MANAGER_EMAIL=#{managerEmail}  AND CARE_RESERVATION_STATUS='2'
+    </select>
+
+    <!-- user_userdetails3의 카운트 횟수.  CARE_RESERVATION_STATUS 에 따라 변경-->
+    <select id="caregetManagerTotal7" resultType="_int">
+        SELECT COUNT(CARE_RESERVATION_STATUS) FROM TBL_CARE_RESERVATION WHERE MANAGER_EMAIL=#{managerEmail}  AND CARE_RESERVATION_STATUS='6'
+    </select>
+
+    <!-- user_userdetails4의 카운트 횟수.  CARE_RESERVATION_STATUS 에 따라 변경-->
+    <select id="caregetManagerTotal8" resultType="_int">
+        SELECT COUNT(CARE_RESERVATION_STATUS) FROM TBL_CARE_RESERVATION WHERE MANAGER_EMAIL=#{managerEmail} AND CARE_RESERVATION_STATUS='7'
+    </select>
     <!-- 유저 이메일로 매니저 예약메일 통해 매니저정보얻기-->
     <select id="caregetManagerInfo" resultType="managerVO">
         SELECT MANAGER_NAME, MANAGER_BIRTH, MANAGER_EMAIL, MANAGER_GENDER, MANAGER_DRIVEOK, MANAGER_PHONE_NUM, MANAGER_REGION, MANAGER_ADDRESS, MANAGER_CAREER, MANAGER_PW, MANAGER_STATUS

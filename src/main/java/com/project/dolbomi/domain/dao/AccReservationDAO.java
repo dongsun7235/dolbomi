@@ -87,6 +87,16 @@ public class AccReservationDAO {
     public int accgetTotal4(String userEmail) {
         return accReservationMapper.accgetTotal4(userEmail);
     }
+
+    public int accgetManagerTotal2(String managerEmail){
+        return accReservationMapper.accgetManagerTotal2(managerEmail);
+    }
+    public int accgetManagerTotal3(String managerEmail){
+        return accReservationMapper.accgetManagerTotal3(managerEmail);
+    }
+    public int accgetManagerTotal4(String managerEmail) {
+        return accReservationMapper.accgetManagerTotal4(managerEmail);
+    }
     // accreservation select one
     public AccReservationVO selectAcc(Long accReservationNum){
         return accReservationMapper.selectAcc(accReservationNum);
