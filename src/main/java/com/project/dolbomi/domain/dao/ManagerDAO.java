@@ -52,8 +52,8 @@ public class ManagerDAO {
         return managerMapper.findPw(managerName, managerPhoneNum, managerBirth, managerEmail);
     }
 
-    //    매니저 탈퇴
-    public void withdrawal(String userEmail){
+   //    매니저 탈퇴
+    public void delete(String userEmail);
 
     }
     /*//프로필 수정
@@ -69,5 +69,7 @@ public class ManagerDAO {
     public ManagerVO managerInfo(String managerEmail) {return managerMapper.managerInfo(managerEmail);}
     public ManagerVO managerInfoacc(String userEmail) {return managerMapper.managerInfoacc(userEmail);}
     public ManagerVO managerInfocare(String userEmail) {return managerMapper.managerInfocare(userEmail);}
+    
+    public void updateProfile(ManagerVO managerVO);
 }
 
