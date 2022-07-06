@@ -18,7 +18,6 @@
         }
     </style>
 </head>
-<body>
 <header th:replace="header.html"></header>
 <div class="sub_page_wrap">
     <div class="sub_title_wrap title_only">
@@ -34,254 +33,250 @@
         <ul>
             <!-- <li id="all" >전체</li> -->
             <!-- <li id="match" class="current"><span>배정요청</span><em>0</em></li> -->
-            <li id="reserv" class="current" style="width: 684px;" onclick="location.href='/manager/manager'"><span>예약</span><em th:text="*{totallist2}+*{totallist6}"></em></li>
-            <li id="proc" class="" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
+            <li id="reserv" class="current" style="width: 684px;" onclick="location.href='/manager/manager'"><span>예약</span><em th:text="${totallist2}+${totallist6}"></em></li>
+            <li id="proc" class="" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="${totallist3}+${totallist7}"></em></li>
             <!-- <li id="pay" class=""><span>결제요청</span><em>0</em></li> -->
-            <li id="end" class="" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
+            <li id="end" class="" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="${totallist4}+${totallist8}"></em></li>
         </ul>
     </div>
 </div>
 <!-- 목록시작 -->
+<form action="/manager/startService" method="post" name="reservForm">
+    <div class="com_accordion" >
+        <ul style="    margin: 0% 17% 0% 17%;">
+            <li class="history">
+                <div class="ac_title" th:object="${carereservationlist}"  th:if="${carereservationlist}">
+                    <input type="hidden" th:field="*{careReservationNum}">
+                    <p class="service_a" style="background: #3d7ed8;">돌봄</p>
+                    <div class="left_con" style="padding-right:37px; ">
+                        <p>
+                            <span class="title" style="margin-right: 89px">이용자</span>
+                            <span th:text="*{careReservationName}"></span>
+                        </p>
+                        <p>
+                            <span class="title">돌봄일정 및 방문시간</span>
+                            <span th:text="*{#strings.substring(careReservationDate,0,10)}"></span>
+                            <span th:text="*{#strings.substring(careReservationDate,11,16)}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 76px">이용시간</span>
+                            <span th:text="|*{careReservationTime}시간|"></span>
+                        </p>
 
-<div class="com_accordion" >
-    <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-          <form action="/manager/startService" method="post" name="reservForm">
-            <div class="ac_title" th:object="${carereservationlist}"  th:if="${carereservationlist}">
-                <input type="hidden" th:field="*{careReservationNum}">
-                <p class="service_a" style="background: #3d7ed8;">돌봄</p>
-                <div class="left_con" style="padding-right:37px; ">
-                    <p>
-                        <span class="title" style="margin-right: 89px">이용자</span>
-                        <span th:text="*{careReservationName}"></span>
-                    </p>
-                    <p>
-                        <span class="title">돌봄일정 및 방문시간</span>
-                        <span th:text="*{#strings.substring(careReservationDate,0,10)}"></span>
-                        <span th:text="*{#strings.substring(careReservationDate,11,16)}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 76px">이용시간</span>
-                        <span th:text="|*{careReservationTime}시간|"></span>
-                    </p>
-
-                    <p>
-                        <span class="title" style="margin-right: 90px">목적지</span>
-                        <span th:text="*{careReservationAddress}"><br></span>
-                    </p>
-                    <hr style="border : 0px; width: 100%;
-                                border-top: 2px solid #e8e6e7;
-                                width: 100%;
-                                margin: 20px 0 20px 0;"/>
-                    <button type="button" id="test04" style="color: #666666;
-                            font-weight: 900;
-                            cursor: pointer;
-                            align-self: center;
-                            margin-right: 115px;
-                            background-color: white;
-                            font-size: 15px;
-                        ">상세보기</button>
-                </div>
-                <div style="    position: absolute;
-                        right: 20px;">
-                    <div class="button_wrap">
-                        <a class="accept">시작</a>
-                        <a class="refuse">취소</a>
+                        <p>
+                            <span class="title" style="margin-right: 90px">목적지</span>
+                            <span th:text="*{careReservationAddress}"><br></span>
+                        </p>
+                        <hr style="border : 0px; width: 100%;
+                                    border-top: 2px solid #e8e6e7;
+                                    width: 100%;
+                                    margin: 20px 0 20px 0;"/>
+                        <button type="button" id="test04" style="color: #666666;
+                                font-weight: 900;
+                                cursor: pointer;
+                                align-self: center;
+                                margin-right: 115px;
+                                background-color: white;
+                                font-size: 15px;
+                            ">상세보기</button>
+                    </div>
+                    <div style="    position: absolute;
+                            right: 20px;">
+                        <div class="button_wrap">
+                            <a class="accept">시작</a>
+                            <a class="refuse">취소</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-          </form>
-        </li>
-    </ul>
-</div>
-<div class="com_accordion" id="test05"  style="display:none;"  th:object="${carereservationlist}" th:if="${carereservationlist}">
-    <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-            <div class="ac_title">
+            </li>
+        </ul>
+    </div>
+    <div class="com_accordion" id="test05"  style="display:none;"  th:object="${carereservationlist}" th:if="${carereservationlist}">
+        <ul style="    margin: 0% 17% 0% 17%;">
+            <li class="history">
+                <div class="ac_title">
 
-                <p class="service_a" style="display: none;">돌봄서비스</p>
-                <div class="left_con" style="margin-left: 30px; padding-right:37px;">
-                    <p>
-                        <span class="title" >돌봄서비스</span>
+                    <p class="service_a" style="display: none;">돌봄서비스</p>
+                    <div class="left_con" style="margin-left: 30px; padding-right:37px;">
+                        <p>
+                            <span class="title" >돌봄서비스</span>
 
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 89px">이용자</span>
-                        <span th:text="*{careReservationName}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 58px">이용자 나이</span>
-                        <span th:text="|*{careReservationAge}살|"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 58px">이용자 성별</span>
-                        <span th:if="*{careReservationGender == 'M'}" th:text="남자"></span>
-                        <span th:if="*{careReservationGender == 'W'}" th:text="여자"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
-                        <span th:text="*{careReservationPhoneNum}"></span>
-                    </p>
-                    <p>
-                        <span class="title">돌봄일정 및 방문시간</span>
-                        <span th:text="*{#strings.substring(careReservationDate,0,10)}"></span>
-                        <span th:text="*{#strings.substring(careReservationDate,11,16)}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 76px">이용시간</span>
-                        <span th:text="|*{careReservationTime}시간|"></span>
-                    </p>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 89px">이용자</span>
+                            <span th:text="*{careReservationName}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 58px">이용자 나이</span>
+                            <span th:text="|*{careReservationAge}살|"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 58px">이용자 성별</span>
+                            <span th:if="*{careReservationGender == 'M'}" th:text="남자"></span>
+                            <span th:if="*{careReservationGender == 'W'}" th:text="여자"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
+                            <span th:text="*{careReservationPhoneNum}"></span>
+                        </p>
+                        <p>
+                            <span class="title">돌봄일정 및 방문시간</span>
+                            <span th:text="*{#strings.substring(careReservationDate,0,10)}"></span>
+                            <span th:text="*{#strings.substring(careReservationDate,11,16)}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 76px">이용시간</span>
+                            <span th:text="|*{careReservationTime}시간|"></span>
+                        </p>
 
-                    <p>
-                        <span class="title" style="margin-right: 90px">목적지</span>
-                        <span th:text="*{careReservationAddress}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 59px">총 이용요금</span>
-                        <span th:text="|*{careReservationPrice}원|"></span>
-                    </p>
-                    <hr style="border : 0px; width: 100%;
-                                border-top: 2px solid #e8e6e7;
-                                width: 100%;
-                                margin: 20px 0 20px 0;"/>
-                    <button type="button" id="test06" style="color: #666666;
-                            font-weight: 900;
-                            cursor: pointer;
-                            align-self: center;
-                            margin-right: 17px;
-                            background-color: white;
-                            font-size: 15px;
-                        ">닫기</button>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<div class="com_accordion" >
-    <ul style="    margin: 0% 17% 0% 17%;">
-
-        <li class="history">
-          <form action="/manager/startService" method="post" name="reservForm">
-            <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}" >
-                <input type="hidden" th:field="*{accReservationNum}">
-                <p class="service_a">동행</p>
-                <div class="left_con" style="padding-right:37px;">
-                    <p>
-                        <span class="title" style="margin-right: 89px">이용자</span>
-                        <span th:text="*{accReservationName}"></span>
-                    </p>
-                    <p>
-                        <span class="title" >동행일정 및 방문시간</span>
-                        <span th:text="*{#strings.substring(accReservationDate,0,10)}"></span>
-                        <span th:text="*{#strings.substring(accReservationDate,11,16)}"></span>
-
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 76px">이용시간</span>
-                        <span th:text="|*{accReservationTime}시간|"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 90px">출발지</span>
-                        <span th:text="*{accReservationStartAddress}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 90px">목적지</span>
-                        <span th:text="*{accReservationEndAddress}"><br></span>
-                    </p>
-                    <hr style="border : 0px; width: 100%;
-                                border-top: 2px solid #e8e6e7;
-                                width: 100%;
-                                margin: 20px 0 20px 0;"/>
-                    <button type="button" id="test01" style="color: #666666;
-                            font-weight: 900;
-                            cursor: pointer;
-                            align-self: center;
-                            margin-right: 115px;
-                            background-color: white;
-                            font-size: 15px;
-                        ">상세보기</button>
-                </div>
-                <div style="    position: absolute;
-                        right: 20px;">
-                    <div class="button_wrap" style="top: 22px;">
-                        <a class="accept">시작</a>
-                        <a class="refuse">취소</a>
+                        <p>
+                            <span class="title" style="margin-right: 90px">목적지</span>
+                            <span th:text="*{careReservationAddress}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 59px">총 이용요금</span>
+                            <span th:text="|*{careReservationPrice}원|"></span>
+                        </p>
+                        <hr style="border : 0px; width: 100%;
+                                    border-top: 2px solid #e8e6e7;
+                                    width: 100%;
+                                    margin: 20px 0 20px 0;"/>
+                        <button type="button" id="test06" style="color: #666666;
+                                font-weight: 900;
+                                cursor: pointer;
+                                align-self: center;
+                                margin-right: 17px;
+                                background-color: white;
+                                font-size: 15px;
+                            ">닫기</button>
                     </div>
                 </div>
-            </div>
-          </form>
-        </li>
-    </ul>
-</div>
-<div class="com_accordion" id="test02"  style="display:none;" >
-    <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-            <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
+            </li>
+        </ul>
+    </div>
 
-                <p class="service_a" style="display: none;">동행서비스</p>
-                <div class="left_con" style="margin-left: 30px; padding-right:37px;">
-                    <p>
-                        <span class="title">동행서비스</span>
-                        <!-- 동행서비스종류나타냄 -->
+    <div class="com_accordion" >
+        <ul style="    margin: 0% 17% 0% 17%;">
 
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 89px">이용자</span>
-                        <span th:text="*{accReservationName}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 58px">이용자 나이</span>
-                        <span th:text="|*{accReservationAge}살|"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 58px">이용자 성별</span>
-                        <span th:if="*{accReservationGender == 'M'}" th:text="남자"></span>
-                        <span th:if="*{accReservationGender == 'W'}" th:text="여자"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
-                        <span th:text="*{accReservationPhoneNum}"></span>
-                    </p>
-                    <p>
-                        <span class="title">동행일정 및 방문시간</span>
-                        <span th:text="*{#strings.substring(accReservationDate,0,10)}"></span>
-                        <span th:text="*{#strings.substring(accReservationDate,11,16)}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 76px">이용시간</span>
-                        <span th:text="|*{accReservationTime}시간|"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 90px">출발지</span>
-                        <span th:text="*{accReservationStartAddress}"></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 91px">목적지</span>
-                        <span th:text="*{accReservationEndAddress}"><br></span>
-                    </p>
-                    <p>
-                        <span class="title" style="margin-right: 59px">총 이용요금</span>
-                        <span th:text="|*{accReservationPrice}원|"></span>
-                    </p>
-                    <hr style="border : 0px; width: 100%;
-                                border-top: 2px solid #e8e6e7;
-                                width: 100%;
-                                margin: 20px 0 20px 0;"/>
-                    <button type="button" id="test03" style="color: #666666;
-                            font-weight: 900;
-                            cursor: pointer;
-                            align-self: center;
-                            margin-right: 17px;
-                            background-color: white;
-                            font-size: 15px;
-                        ">닫기</button>
+            <li class="history">
+                <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}" >
+                    <input type="hidden" th:field="*{accReservationNum}">
+                    <p class="service_a">동행</p>
+                    <div class="left_con" style="padding-right:37px;">
+                        <p>
+                            <span class="title" style="margin-right: 89px">이용자</span>
+                            <span th:text="*{accReservationName}"></span>
+                        </p>
+                        <p>
+                            <span class="title" >동행일정 및 방문시간</span>
+                            <span th:text="*{#strings.substring(accReservationDate,0,10)}"></span>
+                            <span th:text="*{#strings.substring(accReservationDate,11,16)}"></span>
+
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 76px">이용시간</span>
+                            <span th:text="|*{accReservationTime}시간|"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 90px">출발지</span>
+                            <span th:text="*{accReservationStartAddress}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 90px">목적지</span>
+                            <span th:text="*{accReservationEndAddress}"><br></span>
+                        </p>
+                        <hr style="border : 0px; width: 100%;
+                                    border-top: 2px solid #e8e6e7;
+                                    width: 100%;
+                                    margin: 20px 0 20px 0;"/>
+                        <button type="button" id="test01" style="color: #666666;
+                                font-weight: 900;
+                                cursor: pointer;
+                                align-self: center;
+                                margin-right: 115px;
+                                background-color: white;
+                                font-size: 15px;
+                            ">상세보기</button>
+                    </div>
+                    <div style="    position: absolute;
+                            right: 20px;">
+                        <div class="button_wrap" style="top: 22px;">
+                            <a class="accept">시작</a>
+                            <a class="refuse">취소</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </li>
-    </ul>
-</div>
+            </li>
+        </ul>
+    </div>
+    <div class="com_accordion" id="test02"  style="display:none;" >
+        <ul style="    margin: 0% 17% 0% 17%;">
+            <li class="history">
+                <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
 
+                    <p class="service_a" style="display: none;">동행서비스</p>
+                    <div class="left_con" style="margin-left: 30px; padding-right:37px;">
+                        <p>
+                            <span class="title">동행서비스</span>
+                            <!-- 동행서비스종류나타냄 -->
+
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 89px">이용자</span>
+                            <span th:text="*{accReservationName}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 58px">이용자 나이</span>
+                            <span th:text="|*{accReservationAge}살|"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 58px">이용자 성별</span>
+                            <span th:if="*{accReservationGender == 'M'}" th:text="남자"></span>
+                            <span th:if="*{accReservationGender == 'W'}" th:text="여자"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
+                            <span th:text="*{accReservationPhoneNum}"></span>
+                        </p>
+                        <p>
+                            <span class="title">동행일정 및 방문시간</span>
+                            <span th:text="*{#strings.substring(accReservationDate,0,10)}"></span>
+                            <span th:text="*{#strings.substring(accReservationDate,11,16)}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 76px">이용시간</span>
+                            <span th:text="|*{accReservationTime}시간|"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 90px">출발지</span>
+                            <span th:text="*{accReservationStartAddress}"></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 91px">목적지</span>
+                            <span th:text="*{accReservationEndAddress}"><br></span>
+                        </p>
+                        <p>
+                            <span class="title" style="margin-right: 59px">총 이용요금</span>
+                            <span th:text="|*{accReservationPrice}원|"></span>
+                        </p>
+                        <hr style="border : 0px; width: 100%;
+                                    border-top: 2px solid #e8e6e7;
+                                    width: 100%;
+                                    margin: 20px 0 20px 0;"/>
+                        <button type="button" id="test03" style="color: #666666;
+                                font-weight: 900;
+                                cursor: pointer;
+                                align-self: center;
+                                margin-right: 17px;
+                                background-color: white;
+                                font-size: 15px;
+                            ">닫기</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</form>
 <div id="popup01">
     <div class="close">닫기</div>
     <div style="font-size: 32px;
@@ -303,9 +298,21 @@
 </div>
 <footer th:replace="footer.html"></footer>
 </body>
-<script src="/asset/js/manager.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    /* 시작버튼 클릭 */
+    $(".accept").click(function(){
+        alert('서비스 시작하겠습니다.');
+        $("form[name='reservForm']").submit();
+    })
+
+    /* 취소버튼 클릭 */
+    $(".refuse").click(function(){
+        alert('서비스 예약을 취소합니다.');
+        $("form[name='reservForm']").attr("action", "/manager/cancelService").submit();
+    })
+
+
     $("#btnLogin").click(function(){
         if(!$(this).attr('class').match('on')){
             $(this).addClass('on');
@@ -418,18 +425,6 @@
             $(this).siblings(".ac_detail").css('display', 'none');
         }
     });
-
-    /* 시작버튼 클릭 */
-    $(".accept").click(function(){
-        alert('서비스 시작하겠습니다.');
-        $("input[name='reservForm']").submit();
-    })
-
-    /* 취소버튼 클릭 */
-    $(".refuse").click(function(){
-        alert('서비스 예약을 취소합니다.');
-        $("input[name='reservForm']").attr("action", "/manager/cancelService").submit();
-    })
 
 </script>
 

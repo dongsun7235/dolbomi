@@ -34,10 +34,10 @@
         <ul>
             <!-- <li id="all" >전체</li> -->
             <!-- <li id="match" class="current"><span>배정요청</span><em>0</em></li> -->
-            <li id="reserv" class="" onclick="location.href='/manager/manager'" style="    width: 684px;"><span>예약</span><em th:text="*{totallist2}+*{totallist6}"></em></li>
-            <li id="proc" class="" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
+            <li id="reserv" class="" onclick="location.href='/manager/manager'" style="    width: 684px;"><span>예약</span><em th:text="${totallist2}+${totallist6}"></em></li>
+            <li id="proc" class="" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="${totallist3}+${totallist7}"></em></li>
             <!-- <li id="pay" class=""><span>결제요청</span><em>0</em></li> -->
-            <li id="end" class="current" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
+            <li id="end" class="current" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="${totallist4}+${totallist8}"></em></li>
         </ul>
     </div>
 </div>
@@ -100,11 +100,6 @@
 
             </div>
         </li>
-    </ul>
-</div>
-
-<div class="com_accordion">
-    <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history" th:each="acc:${accreservationlist}">
             <div class="ac_title" th:object="${acc}">
 
