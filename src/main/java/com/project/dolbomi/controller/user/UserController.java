@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 
 @Controller
@@ -164,19 +165,6 @@ public class UserController {
 
 
 
-    //    서비스 상태 변경(배정취소)
-    @GetMapping("matchingCancel")
-    public void allocationCancel(){
-
-    }
-
-    //    서비스 상태 변경(배정수락)
-    @GetMapping("matchingAccept")
-    public String allocationAccept(){
-        return "/user/user_details2";
-    }
-
-
     //    페이지 이동
     @GetMapping("acc_reservation1")
     public void acc_reservation1(){}
@@ -241,15 +229,16 @@ public class UserController {
 
     /* user_userdetails 의  매니저 수락*/
     @PostMapping("matchingAccept")
-    public String matchingAccept(HttpServletRequest request) {
-
+    public String matchingAccept(HttpServletRequest request) throws IOException {
+        request.setCharacterEncoding("utf-8");
         HttpSession httpSession = request.getSession();
         httpSession.getAttribute("userEmail");
         String email=String.valueOf(httpSession.getAttribute("userEmail"));
 
         String accNum = request.getParameter("accReservationNum");
         String careNum = request.getParameter("careReservationNum");
-
+        log.info(accNum);
+        log.info(accNum);
         if(accNum != null){
             userService.AccManagerY(Long.parseLong(accNum));
             return "user/user_userdetails2";
@@ -271,11 +260,11 @@ public class UserController {
 
         if(accNum != null){
             userService.AccManagerN(Long.parseLong(accNum));
-            return "user/user_userdetails";
+            return "/user/user_userdetails";
         }
 
         userService.CareManagerN(Long.parseLong(careNum));
-        return "user/user_userdetails";
+        return "/user/user_userdetails";
     }
 
     @GetMapping("user_userdetails2")
