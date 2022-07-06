@@ -124,6 +124,16 @@ public class UserServiceImpl implements UserService {
         accReservationDAO.Accdelete(accReservationNum);
     }
 
+    @Override
+    public AccReservationVO accManagerView(String managerEmail) {
+        return accReservationDAO.accManagerView(managerEmail);
+    }
+
+    @Override
+    public AccReservationVO accManagerView2(String managerEmail) {
+        return accReservationDAO.accManagerView2(managerEmail);
+    }
+
     //동행서비스 매니저의 업무 시작,manager 페이지의 동행예약목록
     @Override
     public void AccManagerStart(Long accReservationNum) {
@@ -211,6 +221,17 @@ public class UserServiceImpl implements UserService {
     public void Caredelete(Long careReservationNum) {
         careReservationDAO.Caredelete(careReservationNum);
     }
+
+    @Override
+    public CareReservationVO careManagerView(String managerEmail) {
+        return careReservationDAO.careManagerView(managerEmail);
+    }
+
+    @Override
+    public CareReservationVO careManagerView2(String managerEmail) {
+        return careReservationDAO.careManagerView2(managerEmail);
+    }
+
     //동행서비스 매니저의 업무 시작,manager 페이지의 동행예약목록
     @Override
     public void CareManagerStart(Long careReservationNum) {
@@ -487,6 +508,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User4AccDTO> accServiceEndList(String userEmail) {
         return accReservationDAO.accServiceEndList(userEmail);
+    }
+
+    @Override
+    public List<CareReservationVO> careManagerServiceEndList(String managerEmail) {
+        return careReservationDAO.careManagerServiceEndList(managerEmail);
+    }
+
+    @Override
+    public List<AccReservationVO> accManagerServiceEndList(String managerEmail) {
+        return accReservationDAO.accManagerServiceEndList(managerEmail);
     }
 
 }

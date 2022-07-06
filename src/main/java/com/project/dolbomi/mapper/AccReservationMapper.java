@@ -56,6 +56,12 @@ public interface AccReservationMapper {
     public AccReservationVO accgetNum4(String userEmail);
     //user_userdetails의 카운트 횟수.  ACC_RESERVATION_STATUS 에 따라 변경
 
+    // 매니저가 서비스 신청한 동행예약내용 가져오기 status =0
+    public AccReservationVO accManagerView(String managerEmail);
+
+    // 매니저가 서비스 신청한 돌봄예약내용 가져오기 status =6
+    public AccReservationVO accManagerView2(String managerEmail);
+
     public int accgetTotal1(String userEmail);
     public int accgetTotal2(String userEmail);
     public int accgetTotal3(String userEmail);
@@ -72,5 +78,8 @@ public interface AccReservationMapper {
 
     //user_details4 서비스 종료 리스트
     public List<User4AccDTO> accServiceEndList(String userEmail);
+
+    //manager3 서비스 종료 리스트
+    public List<AccReservationVO> accManagerServiceEndList(String managerEmail);
 }
 

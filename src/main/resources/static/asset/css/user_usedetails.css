@@ -243,6 +243,7 @@ input[type="hidden"] + input {
     font-weight: 500;
     justify-content: center;
     align-items: flex-start;
+    height: 180px;
 }
 
 .com_accordion ul li p {

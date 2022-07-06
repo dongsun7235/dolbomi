@@ -2017,7 +2017,7 @@
                             </p>
                             <p>
                                 <span class="title">이용시간</span>
-                                <span class="accReservationTime" th:text="*{accReservationTime}"></span>
+                                <span class="accReservationTime" th:text="|*{accReservationTime}시간|"></span>
                             </p>
                             <p>
                                 <span class="title">출발지</span>
@@ -2090,11 +2090,12 @@
                             </p>
                             <p>
                                 <span class="title">이용자 나이</span>
-                                <span class="accReservationAge" th:text="*{accReservationAge}"></span>
+                                <span class="accReservationAge" th:text="|*{accReservationAge}살|"></span>
                             </p>
                             <p>
                                 <span class="title">이용자 성별</span>
-                                <span class="accReservationGender" th:text="*{accReservationGender}"></span>
+                                <span class="accReservationGender" th:if="*{accReservationGender == 'M'}" th:text="남자"></span>
+                                <span class="accReservationGender" th:if="*{accReservationGender == 'W'}" th:text="여자"></span>
                             </p>
                             <p>
                                 <span class="title">이용자 휴대폰</span>
@@ -2107,7 +2108,7 @@
                             </p>
                             <p>
                                 <span class="title">이용시간</span>
-                                <span class="accReservationTime" th:text="*{accReservationTime}"></span>
+                                <span class="accReservationTime" th:text="|*{accReservationTime}시간|"></span>
                             </p>
                             <p>
                                 <span class="title">출발지</span>
@@ -2119,7 +2120,7 @@
                             </p>
                             <p>
                                 <span class="title">총 이용요금</span>
-                                <span class="accReservationPrice" th:text="*{accReservationPrice}"></span>
+                                <span class="accReservationPrice" th:text="|*{accReservationPrice}원|"></span>
                             </p>
                             <hr style="border : 0px; width: 100%;
                         border-top: 2px solid #e8e6e7;
@@ -2175,7 +2176,7 @@
                             </p>
                             <p>
                                 <span class="title">이용시간</span>
-                                <span class="careReservationTime" th:text="*{careReservationTime}"></span>
+                                <span class="careReservationTime" th:text="|*{careReservationTime}시간|"></span>
                             </p>
                             <!-- <p>
                             <span class="title">출발지</span>
@@ -2247,11 +2248,12 @@
                             </p>
                             <p>
                                 <span class="title">이용자 나이</span>
-                                <span class="careReservationAge" th:text="*{careReservationAge}"></span>
+                                <span class="careReservationAge" th:text="|*{careReservationAge}살|"></span>
                             </p>
                             <p>
                                 <span class="title">이용자 성별</span>
-                                <span class="careReservationGender" th:text="*{careReservationGender}"></span>
+                                <span class="careReservationGender" th:if="*{careReservationGender == 'M'}" th:text="남자"></span>
+                                <span class="careReservationGender" th:if="*{careReservationGender == 'W'}" th:text="여자"></span>
                             </p>
                             <p>
                                 <span class="title">이용자 휴대폰</span>
@@ -2264,7 +2266,7 @@
                             </p>
                             <p>
                                 <span class="title">이용시간</span>
-                                <span class="careReservationTime" th:text="*{careReservationTime}"></span>
+                                <span class="careReservationTime" th:text="|*{careReservationTime}시간|"></span>
                             </p>
                             <!-- <p>
                             <span class="title">출발지</span>
@@ -2276,7 +2278,7 @@
                             </p>
                             <p>
                                 <span class="title">총 이용요금</span>
-                                <span class="careReservationPrice" th:text="*{careReservationPrice}"></span>
+                                <span class="careReservationPrice" th:text="|*{careReservationPrice}원|"></span>
                             </p>
                             <hr style="border : 0px; width: 100%;
                         border-top: 2px solid #e8e6e7;

@@ -25,7 +25,6 @@
 
        <div class="sub_title">
             <p>서비스 내역</p>
-           <input name="managerName" type="hidden" th:value="${session.managerVO.managerName}"/>
             <p th:text="|*{session.managerVO.managerName}님의 이용 내역입니다.|"></p>
         </div>
     </div>
@@ -44,11 +43,12 @@
 </div>
 <!-- 목록시작 -->
 
-<div class="com_accordion" th:object="${carereservationlist}"  th:if="${totallist6}" >
+<div class="com_accordion" >
     <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history">
-            <div class="ac_title">
-
+          <form action="/manager/startService" method="post" name="reservForm">
+            <div class="ac_title" th:object="${carereservationlist}"  th:if="${carereservationlist}">
+                <input type="hidden" th:field="*{careReservationNum}">
                 <p class="service_a" style="background: #3d7ed8;">돌봄</p>
                 <div class="left_con" style="padding-right:37px; ">
                     <p>
@@ -73,7 +73,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test04" style="color: #666666;
+                    <button type="button" id="test04" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -89,38 +89,12 @@
                         <a class="refuse">취소</a>
                     </div>
                 </div>
-                <!-- <button class="openPopup1" style=" background-color: #f7579f;
-        color: white;
-        padding: 15px 26px 15px 26px;
-        font-size: 18px;
-        font-weight: 700;
-        position: absolute;
-        right: 105px;
-        border-radius: 30px;
-        margin-right: 20px;
-        bottom: 80px;
-
-    ">
-        시작
-    </button>
-                <button class="openPopup2" style=" background-color: #f7579f;
-        color: white;
-        padding: 15px 26px 15px 26px;
-        font-size: 18px;
-        font-weight: 700;
-        position: absolute;
-        right: 15px;
-        border-radius: 30px;
-        margin-right: 20px;
-        bottom: 80px;
-    ">
-        취소
-    </button> -->
             </div>
+          </form>
         </li>
     </ul>
 </div>
-<div class="com_accordion" id="test05"  style="display:none;"  th:object="${carereservationlist}" th:if="${totallist6}">
+<div class="com_accordion" id="test05"  style="display:none;"  th:object="${carereservationlist}" th:if="${carereservationlist}">
     <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history">
             <div class="ac_title">
@@ -141,7 +115,8 @@
                     </p>
                     <p>
                         <span class="title" style="margin-right: 58px">이용자 성별</span>
-                        <span th:text="*{careReservationGender}"></span>
+                        <span th:if="*{careReservationGender == 'M'}" th:text="남자"></span>
+                        <span th:if="*{careReservationGender == 'W'}" th:text="여자"></span>
                     </p>
                     <p>
                         <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
@@ -169,7 +144,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test06" style="color: #666666;
+                    <button type="button" id="test06" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -182,11 +157,14 @@
         </li>
     </ul>
 </div>
-<div class="com_accordion"  th:object="${accreservationlist}" th:if="${totallist2}" >
-    <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-            <div class="ac_title">
 
+<div class="com_accordion" >
+    <ul style="    margin: 0% 17% 0% 17%;">
+
+        <li class="history">
+          <form action="/manager/startService" method="post" name="reservForm">
+            <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}" >
+                <input type="hidden" th:field="*{accReservationNum}">
                 <p class="service_a">동행</p>
                 <div class="left_con" style="padding-right:37px;">
                     <p>
@@ -215,7 +193,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test01" style="color: #666666;
+                    <button type="button" id="test01" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -231,38 +209,15 @@
                         <a class="refuse">취소</a>
                     </div>
                 </div>
-                <!--  <button class="openPopup1" style=" background-color: #f7579f;
-         color: white;
-         padding: 15px 26px 15px 26px;
-         font-size: 18px;
-         font-weight: 700;
-         position: absolute;
-         right: 105px;
-         border-radius: 30px;
-         margin-right: 20px
-     ">
-         시작
-     </button>
-                 <button class="openPopup2" style=" background-color: #f7579f;
-         color: white;
-         padding: 15px 26px 15px 26px;
-         font-size: 18px;
-         font-weight: 700;
-         position: absolute;
-         right: 15px;
-         border-radius: 30px;
-         margin-right: 20px
-     ">
-         취소
-     </button> -->
             </div>
+          </form>
         </li>
     </ul>
 </div>
 <div class="com_accordion" id="test02"  style="display:none;" >
     <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history">
-            <div class="ac_title" th:object="${accreservationlist}" th:if="${totallist2}">
+            <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
 
                 <p class="service_a" style="display: none;">동행서비스</p>
                 <div class="left_con" style="margin-left: 30px; padding-right:37px;">
@@ -281,7 +236,8 @@
                     </p>
                     <p>
                         <span class="title" style="margin-right: 58px">이용자 성별</span>
-                        <span th:text="*{accReservationGender}"></span>
+                        <span th:if="*{accReservationGender == 'M'}" th:text="남자"></span>
+                        <span th:if="*{accReservationGender == 'W'}" th:text="여자"></span>
                     </p>
                     <p>
                         <span class="title" style="margin-right: 44px">이용자 휴대폰</span>
@@ -312,7 +268,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test03" style="color: #666666;
+                    <button type="button" id="test03" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -466,13 +422,13 @@
     /* 시작버튼 클릭 */
     $(".accept").click(function(){
         alert('서비스 시작하겠습니다.');
-        location.href="/manager/startService"
+        $("input[name='reservForm']").submit();
     })
 
     /* 취소버튼 클릭 */
     $(".refuse").click(function(){
         alert('서비스 예약을 취소합니다.');
-        location.href="/manager/cancelService"
+        $("input[name='reservForm']").attr("action", "/manager/cancelService").submit();
     })
 
 </script>
