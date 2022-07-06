@@ -25,7 +25,7 @@
 
         <div class="sub_title">
             <p>서비스 내역</p>
-            <p>매니저님의 이용 내역입니다.</p>
+            <p th:text="|*{session.managerVO.managerName}님의 이용 내역입니다.|"></p>
         </div>
     </div>
 </div>
@@ -34,20 +34,21 @@
         <ul>
             <!-- <li id="all" >전체</li> -->
             <!-- <li id="match" class="current"><span>배정요청</span><em>0</em></li> -->
-            <li id="reserv" class="" onclick="location.href='/manager/manager'" style="    width: 684px;"><span>예약</span><em th:text="*{totallist2}+*{totallist6}"></em></li>
-            <li id="proc" class="current" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="*{totallist3}+*{totallist7}"></em></li>
+            <li id="reserv" class="" onclick="location.href='/manager/manager'" style="    width: 684px;"><span>예약</span><em th:text="${totallist2}+${totallist6}"></em></li>
+            <li id="proc" class="current" onclick="location.href='/manager/manager2'"><span>서비스중</span><em th:text="${totallist3}+${totallist7}"></em></li>
             <!-- <li id="pay" class=""><span>결제요청</span><em>0</em></li> -->
-            <li id="end" class="" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="*{totallist4}+*{totallist8}"></em></li>
+            <li id="end" class="" onclick="location.href='/manager/manager3'"><span>종료</span><em th:text="${totallist4}+${totallist8}"></em></li>
         </ul>
     </div>
 </div>
 <!-- 목록시작 -->
 
-<div class="com_accordion" th:object="${carereservationlist}"  th:if="${totallist6}" >
+<div class="com_accordion" >
     <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history">
-            <div class="ac_title">
-
+          <form action="/manager/endService" method="post" name="reservForm3">
+            <div class="ac_title" th:object="${carereservationlist}"  th:if="${carereservationlist}" >
+                <input type="hidden" th:field="*{careReservationNum}">
                 <p class="service_a" style="background: #3d7ed8;">돌봄</p>
                 <div class="left_con" style="padding-right:37px">
                     <p>
@@ -72,7 +73,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test04" style="color: #666666;
+                    <button type="button" id="test04" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -81,20 +82,6 @@
                             font-size: 15px;
                         ">업무일지 작성</button>
                 </div>
-                <!-- <button style=" background-color: #f7579f;
-        color: white;
-        padding: 12px 20px 12px 20px;
-        font-size: 14px;
-        font-weight: 700;
-        position: absolute;
-        right: 87px;
-        border-radius: 30px;
-        margin-right: 20px;
-        bottom: 80px;
-
-    ">
-        시작
-    </button> -->
                 <button style=" background-color: #3d7ed8;
             color: white;
             padding: 12px 20px 12px 20px;
@@ -110,6 +97,7 @@
                 </button>
 
             </div>
+          </form>
         </li>
     </ul>
 </div>
@@ -166,11 +154,12 @@
         서비스 종료
     </button>
 </div>
-<div class="com_accordion" th:object="${accreservationlist}" th:if="${totallist6}"  >
+<div class="com_accordion" >
     <ul style="    margin: 0% 17% 0% 17%;">
         <li class="history">
-            <div class="ac_title">
-
+          <form action="/manager/endService" method="post" name="reservForm3">
+            <div class="ac_title" th:object="${accreservationlist}" th:if="${accreservationlist}">
+                <input type="hidden" th:field="*{accReservationNum}">
                 <p class="service_a">동행</p>
                 <div class="left_con" style="padding-right:37px" >
                     <p>
@@ -198,7 +187,7 @@
                                 border-top: 2px solid #e8e6e7;
                                 width: 100%;
                                 margin: 20px 0 20px 0;"/>
-                    <button id="test01" style="color: #666666;
+                    <button type="button" id="test01" style="color: #666666;
                             font-weight: 900;
                             cursor: pointer;
                             align-self: center;
@@ -207,18 +196,6 @@
                             font-size: 15px;
                         ">업무일지 작성</button>
                 </div>
-                <!-- <button style=" background-color: #f7579f;
-        color: white;
-        padding: 12px 20px 12px 20px;
-        font-size: 14px;
-        font-weight: 700;
-        position: absolute;
-        right: 87px;
-        border-radius: 30px;
-        margin-right: 20px
-    ">
-        시작
-    </button> -->
                 <button style=" background-color: #f7579f;
                 color: white;
                 padding: 12px 20px 12px 20px;
@@ -233,6 +210,7 @@
                     서비스중
                 </button>
             </div>
+          </form>
         </li>
     </ul>
 </div>
@@ -297,12 +275,17 @@
     margin-bottom: 110px;
     color: #767070;">업무완료 하시겠습니까?
     </div>
-    <button class="confirm" onclick="location.href='/manager/endService'">완료</button>
+    <button type="button" class="confirm">완료</button>
 </div>
 </body>
 <script src="/asset/js/manager.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+    $(".confirm").click(function () {
+        $("form[name='reservForm3']").submit();
+    })
+
     $("#test01").click(function(){
         $('#test02').toggle();
     });

@@ -25,7 +25,7 @@
 
         <div class="sub_title">
             <p>서비스 내역</p>
-            <p>매니저님의 이용 내역입니다.</p>
+            <p th:text="|*{session.managerVO.managerName}님의 이용 내역입니다.|"></p>
         </div>
     </div>
 </div>
@@ -43,10 +43,10 @@
 </div>
 <!-- 목록시작 -->
 
-<div class="com_accordion" th:object="${carereservationlist}"  th:if="${totallist8}">
+<div class="com_accordion" >
     <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-            <div class="ac_title">
+        <li class="history" th:each="care:${carereservationlist}">
+            <div class="ac_title" th:object="${care}">
 
                 <p class="service_a" style="background: #3d7ed8;">돌봄</p>
                 <div class="left_con" >
@@ -103,10 +103,10 @@
     </ul>
 </div>
 
-<div class="com_accordion"   th:object="${accreservationlist}" th:if="${totallist4}">
+<div class="com_accordion">
     <ul style="    margin: 0% 17% 0% 17%;">
-        <li class="history">
-            <div class="ac_title">
+        <li class="history" th:each="acc:${accreservationlist}">
+            <div class="ac_title" th:object="${acc}">
 
                 <p class="service_a">동행</p>
                 <div class="left_con" >
