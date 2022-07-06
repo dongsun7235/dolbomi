@@ -49,4 +49,7 @@ public interface ManagerService {
     public ManagerVO managerInfo(String managerEmail);
     public ManagerVO managerInfoacc(String userEmail);
     public ManagerVO managerInfocare(String userEmail);
+    
+    //프로필 수정
+    public void modify(ManagerVO managerVO);
 }
