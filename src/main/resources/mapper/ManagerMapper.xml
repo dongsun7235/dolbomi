@@ -59,4 +59,10 @@
 		FROM TBL_MANAGER
 		WHERE MANAGER_NAME = #{managerName} AND MANAGER_PHONE_NUM = #{managerPhoneNum} AND MANAGER_BIRTH = #{managerBirth} AND MANAGER_EMAIL = #{managerEmail}
 	</select>
+	
+	<update id="updateProfile">
+        UPDATE TBL_MANAGER
+        SET MANAGER_NAME= #{managerName}, MANAGER_BIRTH= #{managerBirth}
+        WHERE MANAGER_EMAIL = #{managerEmail, jdbcType=VARCHAR}
+    </update>
 </mapper>
