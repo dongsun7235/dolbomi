@@ -16,8 +16,17 @@
 
     <style>
         /*서비스 신청 목록 네비게이션*/
-        .menu03, .menu04{
-            display: none!important;
+        .menu03, .menu04 {
+            display: none !important;
+        }
+
+        .accept {
+            position: relative;
+            left: 295px;
+            top: -50px;
+            border: outset;
+            border-color: crimson;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +127,9 @@
                             <p>
                                 <span class="title">연락처</span>
                                 <span th:text="*{managerPhoneNum}"><br></span>
+                                <div>
                                 <a class="importPayment accept" th:id="*{careReservationNum}"  th:name="*{careReservationType}" >결제하기</a>
+                                </div>
                                 <input type="text" style="display: none;" th:href="*{careReservationPrice}" th:name="*{careReservationName}" th:id="*{careReservationPhoneNum}">
                             </p>
                         </div>
