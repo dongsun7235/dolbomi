@@ -109,8 +109,17 @@ public class AccReservationDAO {
             accReservationMapper.AccReservationUpdate(accReservationNum, managerEmail);
         }
 
+        //동행 서비스 매니저 연결,status 0
+        public AccReservationVO accManagerView(String managerEmail){return accReservationMapper.accManagerView(managerEmail);}
+
+        //동행 서비스 매니저 연결,status 6
+        public AccReservationVO accManagerView2(String managerEmail){return accReservationMapper.accManagerView2(managerEmail);}
+
         //동행 서비스 종료 리스트
         public List<User4AccDTO> accServiceEndList(String userEmail){return accReservationMapper.accServiceEndList(userEmail);}
+
+    //manager3 서비스 종료 리스트
+    public List<AccReservationVO> accManagerServiceEndList(String managerEmail){return accReservationMapper.accManagerServiceEndList(managerEmail);}
 
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO accgetManagerInfo(String userEmail){return accReservationMapper.accgetManagerInfo(userEmail);}

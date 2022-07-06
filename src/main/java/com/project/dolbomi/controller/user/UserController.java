@@ -300,19 +300,20 @@ public class UserController {
     }
 
     //    서비스 상태 변경(예약취소)
-    @PostMapping("reservCancel")
+    @RequestMapping(value = "user/reservCancel", method = {RequestMethod.POST})
     public String reservationCancel(HttpServletRequest request){
 
         String accNum = request.getParameter("accReservationNum");
         String careNum = request.getParameter("careReservationNum");
-
+        log.info("accNum--------------" + accNum);
+        log.info("careNum--------------" + careNum);
         if(accNum != null){
             userService.Accdelete(Long.parseLong(accNum));
-            return "user/user_userdetails";
+            return "user/user_userdetails2";
         }
 
         userService.Caredelete(Long.parseLong(careNum));
-        return "user/user_userdetails";
+        return "user/user_userdetails2";
     }
 
     @GetMapping("user_userdetails3")
@@ -419,13 +420,11 @@ public class UserController {
 
     //    게시글 상세보기
     @GetMapping({"readReview", "modifyReview"})
-    public String readReview(Long reviewNum, HttpServletRequest req, Model model) {
+    public void readReview(Long reviewNum, HttpServletRequest req, Model model) {
         log.info("----------------------------");
         log.info(req.getRequestURI() + "............. : " + reviewNum);
         log.info("----------------------------");
         model.addAttribute("review", userService.get(reviewNum));
-
-        return "/user/readReview";
     }
 
     @GetMapping("review2")

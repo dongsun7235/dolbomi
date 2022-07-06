@@ -76,4 +76,9 @@ public class AccreservationMapperTests {
     public void bigTest(){
         accReservationMapper.accManagerJoin("aaa@naver.com");
     }
+
+    @Test
+    public void delete(){
+        accReservationMapper.Accdelete(24L);
+    }
 }

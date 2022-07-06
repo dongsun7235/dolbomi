@@ -374,6 +374,7 @@ button {
 .com_accordion ul li.history {
     background: #fdfdfd;
     border: 1px solid #cacaca;
+    margin-bottom: 20px;
 }
 
 .com_accordion ul li {

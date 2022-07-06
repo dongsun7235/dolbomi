@@ -57,6 +57,12 @@ public interface CareReservationMapper {
     //유저 이메일로 매니저 예약메일 통해 매니저정보얻기
     public ManagerVO caregetManagerInfo(String userEmail);
 
+    // 매니저가 서비스 신청한 돌봄예약내용 가져오기 status =0
+    public CareReservationVO careManagerView(String managerEmail);
+
+    // 매니저가 서비스 신청한 돌봄예약내용 가져오기 status =6
+    public CareReservationVO careManagerView2(String managerEmail);
+
     public int caregetTotal5(Long careReservationNum);
     public int caregetTotal6(Long careReservationNum);
     public int caregetTotal7(Long careReservationNum);
@@ -66,5 +72,8 @@ public interface CareReservationMapper {
 
     //user_details4 서비스 종료 리스트
     public List<User4CareDTO> careServiceEndList(String userEmail);
+
+    //manager3 서비스 종료 리스트
+    public List<CareReservationVO> careManagerServiceEndList(String managerEmail);
 
 }
